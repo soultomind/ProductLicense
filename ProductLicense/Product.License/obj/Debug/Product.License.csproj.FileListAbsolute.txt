@@ -1,0 +1,6 @@
+C:\Workspace\GitProject\ProductLicense\ProductLicense\Product.License\bin\Debug\Product.License.dll
+C:\Workspace\GitProject\ProductLicense\ProductLicense\Product.License\bin\Debug\Product.License.pdb
+C:\Workspace\GitProject\ProductLicense\ProductLicense\Product.License\obj\Debug\Product.License.csproj.AssemblyReference.cache
+C:\Workspace\GitProject\ProductLicense\ProductLicense\Product.License\obj\Debug\Product.License.csproj.CoreCompileInputs.cache
+C:\Workspace\GitProject\ProductLicense\ProductLicense\Product.License\obj\Debug\Product.License.dll
+C:\Workspace\GitProject\ProductLicense\ProductLicense\Product.License\obj\Debug\Product.License.pdb
