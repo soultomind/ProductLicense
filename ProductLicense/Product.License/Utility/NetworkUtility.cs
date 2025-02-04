@@ -54,5 +54,21 @@ namespace Product.Utility
 
             return ConvertMacAddress(macAddress);
         }
+
+        public static bool TryGetMacAddress(out string macAddress, out Exception exception)
+        {
+            try
+            {
+                macAddress = GetMacAddress();
+                exception = null;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                macAddress = null;
+                exception = ex;
+                return false;
+            }
+        }
     }
 }

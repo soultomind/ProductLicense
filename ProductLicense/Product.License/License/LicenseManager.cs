@@ -63,21 +63,21 @@ namespace Product.License
                 bMachineGuid = false;
             }
 
-            try
+            string macAddress = null;
+            if (NetworkUtility.TryGetMacAddress(out macAddress, out exception))
             {
-                MacAddress = NetworkUtility.GetMacAddress();
+                MacAddress = macAddress;
+                if (DevelopMode)
+                {
+                    Toolkit.TraceWriteLine("MacAddress=" + machineGuid);
+                }
             }
-            catch (Exception ex)
+            else
             {
                 Toolkit.TraceWriteLine("Error getting MacAddress value");
-                Toolkit.TraceWriteLine(ex);
-                MacAddressException = ex;
+                Toolkit.TraceWriteLine(exception.StackTrace);
+                MacAddressException = exception;
                 bMacAddress = false;
-            }
-
-            if (DevelopMode)
-            {
-                Toolkit.TraceWriteLine("MacAddress=" + MacAddress);
             }
 
             if (bMachineGuid && bMacAddress)
@@ -156,6 +156,9 @@ namespace Product.License
         }
 
         #endregion
+
+        public const string KeyFileFilter = "Product License KeyFile |*.key";
+        public const string DataFileFilter = "Product License Data |*.data";
 
         /// <summary>
         /// 처리 결과

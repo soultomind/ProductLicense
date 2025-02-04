@@ -39,6 +39,11 @@ namespace Product
             get; set;
         }
 
+        public string MacAddress
+        {
+            get; set;
+        }
+
         public IDictionary<RuntimeEnvironment, string> KeyValuePairs
         {
             get;
