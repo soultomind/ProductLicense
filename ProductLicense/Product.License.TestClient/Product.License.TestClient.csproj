@@ -47,6 +47,10 @@
   <ItemGroup>
     <Compile Include="CrossThreadControl.cs" />
     <Compile Include="FileDialogResult.cs" />
+    <Compile Include="LicenseFileData.cs" />
+    <Compile Include="MainForm.Core.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +86,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Product.License\Product.License.csproj">
+      <Project>{2c0b357a-fb5b-4119-8143-bc7dbec1dcc3}</Project>
+      <Name>Product.License</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

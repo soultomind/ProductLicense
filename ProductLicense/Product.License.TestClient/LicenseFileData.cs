@@ -8,5 +8,8 @@ namespace Product.License.TestClient
 {
     public class LicenseFileData
     {
+        public string KeyFilePath { get; set; }
+        public string InitDataFilePath { get; set; }
+        public string ExecDataFilePath { get; set; }
     }
 }
