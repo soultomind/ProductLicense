@@ -54,6 +54,14 @@ namespace Product
 
         public const char IdSplitChar = ',';
 
+        public string SplitCharIds
+        {
+            get
+            {
+                return String.Join(IdSplitChar.ToString(), Ids.ToArray());
+            }
+        }
+
         public IList<int> Ids
         {
             get;

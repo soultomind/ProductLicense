@@ -55,6 +55,30 @@ namespace Product.License.TestClient
 
         }
 
+        private void ButtonDecryptLicenseProductData_Click(object sender, EventArgs e)
+        {
+            string encryptedText = richTextBoxEncryptedtLicenseData.Text;
+            string plainText = new Aes256CBCCrypto().Decrypt(encryptedText);
+
+            LicenseProductData licenseProductData = null;
+            if (licenseProductData != null)
+            {
+                textBoxExecMachineGuid.Text = licenseProductData.ExecMachineGuid;
+                textBoxIds.Text = licenseProductData.SplitCharIds;
+                dateTimePickerIssueDate.Value = licenseProductData.IssueDateTime;
+                dateTimePickerExpireDate.Value = licenseProductData.ExpireDateTime;
+                textBoxLicenseNo.Text = licenseProductData.LicenseNo;
+                textBoxCustomerName.Text = licenseProductData.CustomerName;
+                textBoxProjectName.Text = licenseProductData.ProjectName;
+                textBoxOperationMode.Text = licenseProductData.OperationMode.ToString();
+            }
+        }
+
+        private void ButtonGenerateLicenseProductDataPlainText_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         #endregion
 
         #region GroupBox Test
@@ -187,6 +211,8 @@ namespace Product.License.TestClient
             }
         }
 
+
         #endregion
+        
     }
 }

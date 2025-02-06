@@ -11,6 +11,8 @@ namespace Product
         public static readonly char PropertyCollectionSplitChar = ';';
         public static readonly char PropertyKeyValueSplitChar = '=';
 
+
+
         public string GenerateLicenseData(bool withMachineGuid = false)
         {
             StringBuilder builder = new StringBuilder(256);
@@ -19,7 +21,7 @@ namespace Product
                 builder.Append(nameof(ExecMachineGuid)).Append(PropertyKeyValueSplitChar).Append(ExecMachineGuid);
                 builder.Append(PropertyCollectionSplitChar);
             }
-            builder.Append(nameof(Ids)).Append(PropertyKeyValueSplitChar).Append(String.Join(IdSplitChar.ToString(), Ids.ToArray()));
+            builder.Append(nameof(Ids)).Append(PropertyKeyValueSplitChar).Append(SplitCharIds);
             builder.Append(PropertyCollectionSplitChar);
 
             builder.Append(nameof(IssueDate)).Append(PropertyKeyValueSplitChar).Append(IssueDate);
