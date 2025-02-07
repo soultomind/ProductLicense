@@ -63,8 +63,8 @@ namespace Product.License.TestClient
             LicenseProductData licenseProductData = null;
             if (licenseProductData != null)
             {
-                textBoxExecMachineGuid.Text = licenseProductData.ExecMachineGuid;
-                textBoxIds.Text = licenseProductData.SplitCharIds;
+                textBoxExecKeyValuePairs.Text = licenseProductData.ExecMachineGuid;
+                textBoxProductIds.Text = licenseProductData.SplitCharProductIds;
                 dateTimePickerIssueDate.Value = licenseProductData.IssueDateTime;
                 dateTimePickerExpireDate.Value = licenseProductData.ExpireDateTime;
                 textBoxLicenseNo.Text = licenseProductData.LicenseNo;
@@ -76,7 +76,41 @@ namespace Product.License.TestClient
 
         private void ButtonGenerateLicenseProductDataPlainText_Click(object sender, EventArgs e)
         {
-            
+            OperationMode operationMode = (OperationMode)Enum.Parse(typeof(OperationMode), textBoxOperationMode.Text);
+            string strProductIds = textBoxProductIds.Text;
+            DateTime issueDateTime = dateTimePickerIssueDate.Value;
+            DateTime expireDateTime = dateTimePickerExpireDate.Value;
+            LicenseProductData licenseProductData = LicenseProductData.New(
+                operationMode, strProductIds, issueDateTime, expireDateTime);
+
+            if (textBoxExecKeyValuePairs.Text.Length > 0)
+            {
+                // KeyPair 항목은 QueryString 처럼 구성한다.
+                // Key1=Value1&Key2=Value2& ...
+
+                // Client
+                StringBuilder builder = new StringBuilder();
+
+                string[] execKeyValuePairs = textBoxExecKeyValuePairs.Text.Split('&');
+                for (int i = 0; i < execKeyValuePairs.Length; i++)
+                {
+                    string keyValuePair = execKeyValuePairs[i];
+                    string key = keyValuePair.Split('=')[0];
+                    string value = keyValuePair.Split('=')[1];
+                    builder.AppendFormat("{0}={1}", key, value);
+                    if (i + 1 != execKeyValuePairs.Length)
+                    {
+                        builder.Append("&");
+                    }
+                }
+                licenseProductData.KeyValuePairs.Add(RuntimeEnvironment.Client, builder.ToString());
+            }
+
+            licenseProductData.LicenseNo = textBoxLicenseNo.Text;
+            licenseProductData.CustomerName = textBoxCustomerName.Text;
+            licenseProductData.ProjectName = textBoxProjectName.Text;
+
+            string plainText = licenseProductData.GeneratePlainText();
         }
 
         #endregion

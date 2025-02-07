@@ -33,17 +33,19 @@ namespace Product.License.TestClient
             this.groupBoxLicesneCrypto = new System.Windows.Forms.GroupBox();
             this.buttonGenerateLicenseProductDataPlainText = new System.Windows.Forms.Button();
             this.groupBoxCrypto = new System.Windows.Forms.GroupBox();
-            this.richTextBoxDecryptionByPlainEncrypted = new System.Windows.Forms.RichTextBox();
+            this.labelAfterPlainTextLicenseProductData = new System.Windows.Forms.Label();
+            this.labelBeforePlainTextLicenseProductData = new System.Windows.Forms.Label();
+            this.richTextBoxAfterPlainTextLicenseProductData = new System.Windows.Forms.RichTextBox();
             this.buttonEncryptionPlainTextLicenseProductData = new System.Windows.Forms.Button();
             this.labelEnryptionPlainTextLicenseProductData = new System.Windows.Forms.Label();
-            this.richTextBoxPlainTextLicenseProductData = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxBeforePlainTextLicenseProductData = new System.Windows.Forms.RichTextBox();
             this.buttonDecryptionPlainTextLicenseProductData = new System.Windows.Forms.Button();
             this.richTextBoxEnryptionPlainTextLicenseProductData = new System.Windows.Forms.RichTextBox();
             this.buttonDecryptLicenseProductData = new System.Windows.Forms.Button();
             this.groupBoxLicenseProductData = new System.Windows.Forms.GroupBox();
-            this.labelExecMachineGuid = new System.Windows.Forms.Label();
-            this.textBoxIds = new System.Windows.Forms.TextBox();
-            this.textBoxExecMachineGuid = new System.Windows.Forms.TextBox();
+            this.labelExecKeyValuePairs = new System.Windows.Forms.Label();
+            this.textBoxProductIds = new System.Windows.Forms.TextBox();
+            this.textBoxExecKeyValuePairs = new System.Windows.Forms.TextBox();
             this.dateTimePickerIssueDate = new System.Windows.Forms.DateTimePicker();
             this.labelOperationMode = new System.Windows.Forms.Label();
             this.dateTimePickerExpireDate = new System.Windows.Forms.DateTimePicker();
@@ -56,7 +58,7 @@ namespace Product.License.TestClient
             this.labelExpireDate = new System.Windows.Forms.Label();
             this.textBoxOperationMode = new System.Windows.Forms.TextBox();
             this.labelIssueDate = new System.Windows.Forms.Label();
-            this.labelIds = new System.Windows.Forms.Label();
+            this.labelProductIds = new System.Windows.Forms.Label();
             this.labelEncryptedLicenseData = new System.Windows.Forms.Label();
             this.richTextBoxEncryptedtLicenseData = new System.Windows.Forms.RichTextBox();
             this.groupBoxTest = new System.Windows.Forms.GroupBox();
@@ -72,8 +74,6 @@ namespace Product.License.TestClient
             this.richTextBoxConsole = new System.Windows.Forms.RichTextBox();
             this.contextMenuStripRichTextBoxConsole = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemClear = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelPlainTextLicenseProductData = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBoxLicesneCrypto.SuspendLayout();
             this.groupBoxCrypto.SuspendLayout();
             this.groupBoxLicenseProductData.SuspendLayout();
@@ -108,12 +108,12 @@ namespace Product.License.TestClient
             // 
             // groupBoxCrypto
             // 
-            this.groupBoxCrypto.Controls.Add(this.label1);
-            this.groupBoxCrypto.Controls.Add(this.labelPlainTextLicenseProductData);
-            this.groupBoxCrypto.Controls.Add(this.richTextBoxDecryptionByPlainEncrypted);
+            this.groupBoxCrypto.Controls.Add(this.labelAfterPlainTextLicenseProductData);
+            this.groupBoxCrypto.Controls.Add(this.labelBeforePlainTextLicenseProductData);
+            this.groupBoxCrypto.Controls.Add(this.richTextBoxAfterPlainTextLicenseProductData);
             this.groupBoxCrypto.Controls.Add(this.buttonEncryptionPlainTextLicenseProductData);
             this.groupBoxCrypto.Controls.Add(this.labelEnryptionPlainTextLicenseProductData);
-            this.groupBoxCrypto.Controls.Add(this.richTextBoxPlainTextLicenseProductData);
+            this.groupBoxCrypto.Controls.Add(this.richTextBoxBeforePlainTextLicenseProductData);
             this.groupBoxCrypto.Controls.Add(this.buttonDecryptionPlainTextLicenseProductData);
             this.groupBoxCrypto.Controls.Add(this.richTextBoxEnryptionPlainTextLicenseProductData);
             this.groupBoxCrypto.Location = new System.Drawing.Point(499, 183);
@@ -123,14 +123,32 @@ namespace Product.License.TestClient
             this.groupBoxCrypto.TabStop = false;
             this.groupBoxCrypto.Text = "LicenseProductData Crypto";
             // 
-            // richTextBoxDecryptionByPlainEncrypted
+            // labelAfterPlainTextLicenseProductData
             // 
-            this.richTextBoxDecryptionByPlainEncrypted.BackColor = System.Drawing.Color.White;
-            this.richTextBoxDecryptionByPlainEncrypted.Location = new System.Drawing.Point(21, 299);
-            this.richTextBoxDecryptionByPlainEncrypted.Name = "richTextBoxDecryptionByPlainEncrypted";
-            this.richTextBoxDecryptionByPlainEncrypted.Size = new System.Drawing.Size(400, 70);
-            this.richTextBoxDecryptionByPlainEncrypted.TabIndex = 12;
-            this.richTextBoxDecryptionByPlainEncrypted.Text = "";
+            this.labelAfterPlainTextLicenseProductData.AutoSize = true;
+            this.labelAfterPlainTextLicenseProductData.Location = new System.Drawing.Point(18, 281);
+            this.labelAfterPlainTextLicenseProductData.Name = "labelAfterPlainTextLicenseProductData";
+            this.labelAfterPlainTextLicenseProductData.Size = new System.Drawing.Size(165, 15);
+            this.labelAfterPlainTextLicenseProductData.TabIndex = 15;
+            this.labelAfterPlainTextLicenseProductData.Text = "PlainText LicenseProductData";
+            // 
+            // labelBeforePlainTextLicenseProductData
+            // 
+            this.labelBeforePlainTextLicenseProductData.AutoSize = true;
+            this.labelBeforePlainTextLicenseProductData.Location = new System.Drawing.Point(18, 28);
+            this.labelBeforePlainTextLicenseProductData.Name = "labelBeforePlainTextLicenseProductData";
+            this.labelBeforePlainTextLicenseProductData.Size = new System.Drawing.Size(165, 15);
+            this.labelBeforePlainTextLicenseProductData.TabIndex = 14;
+            this.labelBeforePlainTextLicenseProductData.Text = "PlainText LicenseProductData";
+            // 
+            // richTextBoxAfterPlainTextLicenseProductData
+            // 
+            this.richTextBoxAfterPlainTextLicenseProductData.BackColor = System.Drawing.Color.White;
+            this.richTextBoxAfterPlainTextLicenseProductData.Location = new System.Drawing.Point(21, 299);
+            this.richTextBoxAfterPlainTextLicenseProductData.Name = "richTextBoxAfterPlainTextLicenseProductData";
+            this.richTextBoxAfterPlainTextLicenseProductData.Size = new System.Drawing.Size(400, 70);
+            this.richTextBoxAfterPlainTextLicenseProductData.TabIndex = 12;
+            this.richTextBoxAfterPlainTextLicenseProductData.Text = "";
             // 
             // buttonEncryptionPlainTextLicenseProductData
             // 
@@ -150,14 +168,14 @@ namespace Product.License.TestClient
             this.labelEnryptionPlainTextLicenseProductData.TabIndex = 13;
             this.labelEnryptionPlainTextLicenseProductData.Text = "PlainText 제품라이선스 암호화 데이터";
             // 
-            // richTextBoxPlainTextLicenseProductData
+            // richTextBoxBeforePlainTextLicenseProductData
             // 
-            this.richTextBoxPlainTextLicenseProductData.BackColor = System.Drawing.Color.White;
-            this.richTextBoxPlainTextLicenseProductData.Location = new System.Drawing.Point(21, 46);
-            this.richTextBoxPlainTextLicenseProductData.Name = "richTextBoxPlainTextLicenseProductData";
-            this.richTextBoxPlainTextLicenseProductData.Size = new System.Drawing.Size(400, 70);
-            this.richTextBoxPlainTextLicenseProductData.TabIndex = 9;
-            this.richTextBoxPlainTextLicenseProductData.Text = "";
+            this.richTextBoxBeforePlainTextLicenseProductData.BackColor = System.Drawing.Color.White;
+            this.richTextBoxBeforePlainTextLicenseProductData.Location = new System.Drawing.Point(21, 46);
+            this.richTextBoxBeforePlainTextLicenseProductData.Name = "richTextBoxBeforePlainTextLicenseProductData";
+            this.richTextBoxBeforePlainTextLicenseProductData.Size = new System.Drawing.Size(400, 70);
+            this.richTextBoxBeforePlainTextLicenseProductData.TabIndex = 9;
+            this.richTextBoxBeforePlainTextLicenseProductData.Text = "";
             // 
             // buttonDecryptionPlainTextLicenseProductData
             // 
@@ -189,9 +207,9 @@ namespace Product.License.TestClient
             // 
             // groupBoxLicenseProductData
             // 
-            this.groupBoxLicenseProductData.Controls.Add(this.labelExecMachineGuid);
-            this.groupBoxLicenseProductData.Controls.Add(this.textBoxIds);
-            this.groupBoxLicenseProductData.Controls.Add(this.textBoxExecMachineGuid);
+            this.groupBoxLicenseProductData.Controls.Add(this.labelExecKeyValuePairs);
+            this.groupBoxLicenseProductData.Controls.Add(this.textBoxProductIds);
+            this.groupBoxLicenseProductData.Controls.Add(this.textBoxExecKeyValuePairs);
             this.groupBoxLicenseProductData.Controls.Add(this.dateTimePickerIssueDate);
             this.groupBoxLicenseProductData.Controls.Add(this.labelOperationMode);
             this.groupBoxLicenseProductData.Controls.Add(this.dateTimePickerExpireDate);
@@ -204,7 +222,7 @@ namespace Product.License.TestClient
             this.groupBoxLicenseProductData.Controls.Add(this.labelExpireDate);
             this.groupBoxLicenseProductData.Controls.Add(this.textBoxOperationMode);
             this.groupBoxLicenseProductData.Controls.Add(this.labelIssueDate);
-            this.groupBoxLicenseProductData.Controls.Add(this.labelIds);
+            this.groupBoxLicenseProductData.Controls.Add(this.labelProductIds);
             this.groupBoxLicenseProductData.Location = new System.Drawing.Point(28, 183);
             this.groupBoxLicenseProductData.Name = "groupBoxLicenseProductData";
             this.groupBoxLicenseProductData.Size = new System.Drawing.Size(401, 410);
@@ -212,30 +230,30 @@ namespace Product.License.TestClient
             this.groupBoxLicenseProductData.TabStop = false;
             this.groupBoxLicenseProductData.Text = "LicenseProductData";
             // 
-            // labelExecMachineGuid
+            // labelExecKeyValuePairs
             // 
-            this.labelExecMachineGuid.AutoSize = true;
-            this.labelExecMachineGuid.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelExecMachineGuid.Location = new System.Drawing.Point(27, 38);
-            this.labelExecMachineGuid.Name = "labelExecMachineGuid";
-            this.labelExecMachineGuid.Size = new System.Drawing.Size(83, 15);
-            this.labelExecMachineGuid.TabIndex = 43;
-            this.labelExecMachineGuid.Text = "MachineGuid";
+            this.labelExecKeyValuePairs.AutoSize = true;
+            this.labelExecKeyValuePairs.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.labelExecKeyValuePairs.Location = new System.Drawing.Point(27, 38);
+            this.labelExecKeyValuePairs.Name = "labelExecKeyValuePairs";
+            this.labelExecKeyValuePairs.Size = new System.Drawing.Size(88, 15);
+            this.labelExecKeyValuePairs.TabIndex = 43;
+            this.labelExecKeyValuePairs.Text = "KeyValuePairs";
             // 
-            // textBoxIds
+            // textBoxProductIds
             // 
-            this.textBoxIds.Location = new System.Drawing.Point(142, 64);
-            this.textBoxIds.Name = "textBoxIds";
-            this.textBoxIds.Size = new System.Drawing.Size(200, 23);
-            this.textBoxIds.TabIndex = 28;
-            this.textBoxIds.Text = "11000,11001,11002";
+            this.textBoxProductIds.Location = new System.Drawing.Point(142, 64);
+            this.textBoxProductIds.Name = "textBoxProductIds";
+            this.textBoxProductIds.Size = new System.Drawing.Size(200, 23);
+            this.textBoxProductIds.TabIndex = 28;
+            this.textBoxProductIds.Text = "11000,11001,11002";
             // 
-            // textBoxExecMachineGuid
+            // textBoxExecKeyValuePairs
             // 
-            this.textBoxExecMachineGuid.Location = new System.Drawing.Point(142, 35);
-            this.textBoxExecMachineGuid.Name = "textBoxExecMachineGuid";
-            this.textBoxExecMachineGuid.Size = new System.Drawing.Size(200, 23);
-            this.textBoxExecMachineGuid.TabIndex = 42;
+            this.textBoxExecKeyValuePairs.Location = new System.Drawing.Point(142, 35);
+            this.textBoxExecKeyValuePairs.Name = "textBoxExecKeyValuePairs";
+            this.textBoxExecKeyValuePairs.Size = new System.Drawing.Size(200, 23);
+            this.textBoxExecKeyValuePairs.TabIndex = 42;
             // 
             // dateTimePickerIssueDate
             // 
@@ -345,15 +363,15 @@ namespace Product.License.TestClient
             this.labelIssueDate.TabIndex = 36;
             this.labelIssueDate.Text = "IssueDate";
             // 
-            // labelIds
+            // labelProductIds
             // 
-            this.labelIds.AutoSize = true;
-            this.labelIds.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelIds.Location = new System.Drawing.Point(27, 67);
-            this.labelIds.Name = "labelIds";
-            this.labelIds.Size = new System.Drawing.Size(25, 15);
-            this.labelIds.TabIndex = 35;
-            this.labelIds.Text = "Ids";
+            this.labelProductIds.AutoSize = true;
+            this.labelProductIds.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.labelProductIds.Location = new System.Drawing.Point(27, 67);
+            this.labelProductIds.Name = "labelProductIds";
+            this.labelProductIds.Size = new System.Drawing.Size(74, 15);
+            this.labelProductIds.TabIndex = 35;
+            this.labelProductIds.Text = "Product Ids";
             // 
             // labelEncryptedLicenseData
             // 
@@ -506,24 +524,6 @@ namespace Product.License.TestClient
             this.ToolStripMenuItemClear.Text = "Clear";
             this.ToolStripMenuItemClear.Click += new System.EventHandler(this.RichTextBoxConsoleToolStripMenuItemClear_Click);
             // 
-            // labelPlainTextLicenseProductData
-            // 
-            this.labelPlainTextLicenseProductData.AutoSize = true;
-            this.labelPlainTextLicenseProductData.Location = new System.Drawing.Point(18, 28);
-            this.labelPlainTextLicenseProductData.Name = "labelPlainTextLicenseProductData";
-            this.labelPlainTextLicenseProductData.Size = new System.Drawing.Size(165, 15);
-            this.labelPlainTextLicenseProductData.TabIndex = 14;
-            this.labelPlainTextLicenseProductData.Text = "PlainText LicenseProductData";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 281);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(222, 15);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "PlainText Encrypted LicenseProductData";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -569,34 +569,34 @@ namespace Product.License.TestClient
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemClear;
         private System.Windows.Forms.Label labelEncryptedLicenseData;
         private System.Windows.Forms.RichTextBox richTextBoxEncryptedtLicenseData;
-        private System.Windows.Forms.Label labelExecMachineGuid;
-        private System.Windows.Forms.TextBox textBoxExecMachineGuid;
+        private System.Windows.Forms.Label labelExecKeyValuePairs;
+        private System.Windows.Forms.TextBox textBoxExecKeyValuePairs;
         private System.Windows.Forms.Label labelOperationMode;
         private System.Windows.Forms.Label labelProjectName;
         private System.Windows.Forms.Label labelCustomerName;
         private System.Windows.Forms.Label labelLicenseNo;
         private System.Windows.Forms.Label labelExpireDate;
         private System.Windows.Forms.Label labelIssueDate;
-        private System.Windows.Forms.Label labelIds;
+        private System.Windows.Forms.Label labelProductIds;
         private System.Windows.Forms.TextBox textBoxOperationMode;
         private System.Windows.Forms.TextBox textBoxProjectName;
         private System.Windows.Forms.TextBox textBoxCustomerName;
         private System.Windows.Forms.TextBox textBoxLicenseNo;
         private System.Windows.Forms.DateTimePicker dateTimePickerExpireDate;
         private System.Windows.Forms.DateTimePicker dateTimePickerIssueDate;
-        private System.Windows.Forms.TextBox textBoxIds;
+        private System.Windows.Forms.TextBox textBoxProductIds;
         private System.Windows.Forms.GroupBox groupBoxLicenseProductData;
         private System.Windows.Forms.Button buttonDecryptLicenseProductData;
         private System.Windows.Forms.Button buttonGenerateLicenseProductDataPlainText;
         private System.Windows.Forms.GroupBox groupBoxCrypto;
-        private System.Windows.Forms.RichTextBox richTextBoxDecryptionByPlainEncrypted;
+        private System.Windows.Forms.RichTextBox richTextBoxAfterPlainTextLicenseProductData;
         private System.Windows.Forms.Button buttonEncryptionPlainTextLicenseProductData;
         private System.Windows.Forms.Label labelEnryptionPlainTextLicenseProductData;
-        private System.Windows.Forms.RichTextBox richTextBoxPlainTextLicenseProductData;
+        private System.Windows.Forms.RichTextBox richTextBoxBeforePlainTextLicenseProductData;
         private System.Windows.Forms.Button buttonDecryptionPlainTextLicenseProductData;
         private System.Windows.Forms.RichTextBox richTextBoxEnryptionPlainTextLicenseProductData;
-        private System.Windows.Forms.Label labelPlainTextLicenseProductData;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelBeforePlainTextLicenseProductData;
+        private System.Windows.Forms.Label labelAfterPlainTextLicenseProductData;
     }
 }
 

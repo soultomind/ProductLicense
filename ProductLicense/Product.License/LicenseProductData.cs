@@ -44,6 +44,13 @@ namespace Product
             get; set;
         }
 
+        public string ConvertKeyValuePairs()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            return builder.ToString();
+        }
+
         public IDictionary<RuntimeEnvironment, string> KeyValuePairs
         {
             get;
@@ -52,13 +59,13 @@ namespace Product
 
         #endregion
 
-        public const char IdSplitChar = ',';
+        public const char ProductIdSplitChar = ',';
 
-        public string SplitCharIds
+        public string SplitCharProductIds
         {
             get
             {
-                return String.Join(IdSplitChar.ToString(), Ids.ToArray());
+                return String.Join(ProductIdSplitChar.ToString(), Ids.ToArray());
             }
         }
 
@@ -153,6 +160,11 @@ namespace Product
 
         }
 
+        private LicenseProductData(OperationMode operationMode)
+        {
+            OperationMode = operationMode;
+        }
+
         private LicenseProductData(IList<int> ids, DateTime issueDateTime)
             : this(ids, issueDateTime, new DateTime(DateTime.MaxValue.Ticks))
         {
@@ -181,25 +193,25 @@ namespace Product
             ExpireDateTime = expireDateTime;
         }
 
-        private static IList<int> ConvertProductIdList(string strProductId)
+        internal static IList<int> ConvertProductIdList(string strProductIds)
         {
             IList<int> list = new List<int>();
-            foreach (string id in strProductId.Split(LicenseProductData.IdSplitChar))
+            foreach (string id in strProductIds.Split(LicenseProductData.ProductIdSplitChar))
             {
                 list.Add(int.Parse(id));
             }
             return list;
         }
 
-        private static string ConvertProductIdString(IList<int> idList)
+        internal static string ConvertProductIdString(IList<int> idList)
         {
-            string strProductId = String.Join(IdSplitChar.ToString(), idList.ToArray());
+            string strProductId = String.Join(ProductIdSplitChar.ToString(), idList.ToArray());
             return strProductId;
         }
 
-        public static LicenseProductData NewProd(string strProductId, DateTime issueDateTime)
+        public static LicenseProductData NewProd(string strProductIds, DateTime issueDateTime)
         {
-            IList<int> ids = ConvertProductIdList(strProductId);
+            IList<int> ids = ConvertProductIdList(strProductIds);
 
             LicenseProductData products = new LicenseProductData(ids, issueDateTime);
             products.OperationMode = OperationMode.Prod;
@@ -213,9 +225,9 @@ namespace Product
             return products;
         }
 
-        public static LicenseProductData NewDev(string strProductId, DateTime expireDateTime)
+        public static LicenseProductData NewDev(string strProductIds, DateTime expireDateTime)
         {
-            IList<int> idList = ConvertProductIdList(strProductId);
+            IList<int> idList = ConvertProductIdList(strProductIds);
             return NewDev(idList, expireDateTime);
         }
 
@@ -225,9 +237,9 @@ namespace Product
             return NewDev(idList, issueDateTime, expireDateTime);
         }
 
-        public static LicenseProductData NewDev(string strProductId, DateTime issueDateTime, DateTime expireDateTime)
+        public static LicenseProductData NewDev(string strProductIds, DateTime issueDateTime, DateTime expireDateTime)
         {
-            IList<int> idList = ConvertProductIdList(strProductId);
+            IList<int> idList = ConvertProductIdList(strProductIds);
             return NewDev(idList, issueDateTime, expireDateTime);
         }
 
@@ -236,6 +248,15 @@ namespace Product
             LicenseProductData products = new LicenseProductData(idList, issueDateTime, expireDateTime);
             products.OperationMode = OperationMode.Dev;
             return products;
+        }
+
+        public static LicenseProductData New(OperationMode operationMode, string strProductIds, DateTime issueDateTime, DateTime expireDateTime)
+        {
+            LicenseProductData licenseProductData = new LicenseProductData(operationMode);
+            licenseProductData.Ids = ConvertProductIdList(strProductIds);
+            licenseProductData.IssueDateTime = issueDateTime;
+            licenseProductData.ExpireDateTime = expireDateTime;
+            return licenseProductData;
         }
     }
 }

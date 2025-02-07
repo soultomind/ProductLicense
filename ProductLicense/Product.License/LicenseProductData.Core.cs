@@ -8,10 +8,46 @@ namespace Product
 {
     public partial class LicenseProductData
     {
-        public static readonly char PropertyCollectionSplitChar = ';';
+        public static readonly char PropertyCollectionSplitChar = ':';
         public static readonly char PropertyKeyValueSplitChar = '=';
 
+        public string GeneratePlainText()
+        {
+            // PlainText 구성 방향
+            // 1. PlainText 를 QueryString 형태로 구성
+            // 2. JSON 형태로 구성
 
+            // 최초 KeyValue 에는 KeyValuePairs 정보의 길이 정보로 설정하여 작업을 진행한다.
+            // 예) RuntimeEnvironmentSize=2&ExecMachineGuid=928ef79e-6840-4f0d-82be-e1ae9075f9b8&MacAddress=34:E1:2D:5F:18:DD
+
+            StringBuilder builder = new StringBuilder(256);
+            if (KeyValuePairs.Count > 0)
+            {
+                builder.Append(nameof(ExecMachineGuid)).Append(PropertyKeyValueSplitChar).Append(ExecMachineGuid);
+                builder.Append(PropertyCollectionSplitChar);
+            }
+            builder.Append(nameof(Ids)).Append(PropertyKeyValueSplitChar).Append(SplitCharProductIds);
+            builder.Append(PropertyCollectionSplitChar);
+
+            builder.Append(nameof(IssueDate)).Append(PropertyKeyValueSplitChar).Append(IssueDate);
+            builder.Append(PropertyCollectionSplitChar);
+
+            builder.Append(nameof(ExpireDate)).Append(PropertyKeyValueSplitChar).Append(ExpireDate);
+            builder.Append(PropertyCollectionSplitChar);
+
+            builder.Append(nameof(LicenseNo)).Append(PropertyKeyValueSplitChar).Append(LicenseNo);
+            builder.Append(PropertyCollectionSplitChar);
+
+            builder.Append(nameof(CustomerName)).Append(PropertyKeyValueSplitChar).Append(CustomerName);
+            builder.Append(PropertyCollectionSplitChar);
+
+            builder.Append(nameof(ProjectName)).Append(PropertyKeyValueSplitChar).Append(ProjectName);
+            builder.Append(PropertyCollectionSplitChar);
+
+            builder.Append(nameof(OperationMode)).Append(PropertyKeyValueSplitChar).Append(OperationMode.ToString());
+
+            return builder.ToString();
+        }
 
         public string GenerateLicenseData(bool withMachineGuid = false)
         {
@@ -21,7 +57,7 @@ namespace Product
                 builder.Append(nameof(ExecMachineGuid)).Append(PropertyKeyValueSplitChar).Append(ExecMachineGuid);
                 builder.Append(PropertyCollectionSplitChar);
             }
-            builder.Append(nameof(Ids)).Append(PropertyKeyValueSplitChar).Append(SplitCharIds);
+            builder.Append(nameof(Ids)).Append(PropertyKeyValueSplitChar).Append(SplitCharProductIds);
             builder.Append(PropertyCollectionSplitChar);
 
             builder.Append(nameof(IssueDate)).Append(PropertyKeyValueSplitChar).Append(IssueDate);
