@@ -51,11 +51,11 @@ namespace Product
             return builder.ToString();
         }
 
-        public IDictionary<RuntimeEnvironment, string> KeyValuePairs
+        public IDictionary<string, string> KeyValuePairs
         {
             get;
             internal set;
-        } = new Dictionary<RuntimeEnvironment, string>();
+        } = new Dictionary<string, string>();
 
         #endregion
 

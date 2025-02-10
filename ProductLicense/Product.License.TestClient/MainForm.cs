@@ -18,7 +18,8 @@ namespace Product.License.TestClient
 {
     public partial class MainForm : Form
     {
-        public LicenseFileData LicenseFileData { get; set; }
+        public LicenseFileData LicenseFileData { get; internal set; }
+        public ICrypto Crypto { get; internal set; }
         public MainForm()
         {
             InitializeComponent();
@@ -44,7 +45,7 @@ namespace Product.License.TestClient
             if (LicenseFileData != null)
             {
                 string path = LicenseFileData.KeyFilePath;
-                SetAes256Crypto(path);
+                SetCrypto(path);
             }
         }
 
@@ -85,11 +86,9 @@ namespace Product.License.TestClient
 
             if (textBoxExecKeyValuePairs.Text.Length > 0)
             {
-                // KeyPair 항목은 QueryString 처럼 구성한다.
-                // Key1=Value1&Key2=Value2& ...
-
                 // Client
-                StringBuilder builder = new StringBuilder();
+                RuntimeEnvironment runtimeEnvironment = (RuntimeEnvironment)Enum.Parse(typeof(RuntimeEnvironment), textBoxRuntimeEnvironment.Text);
+                licenseProductData.KeyValuePairs.Add(typeof(RuntimeEnvironment).Name, runtimeEnvironment.ToString());
 
                 string[] execKeyValuePairs = textBoxExecKeyValuePairs.Text.Split('&');
                 for (int i = 0; i < execKeyValuePairs.Length; i++)
@@ -97,13 +96,8 @@ namespace Product.License.TestClient
                     string keyValuePair = execKeyValuePairs[i];
                     string key = keyValuePair.Split('=')[0];
                     string value = keyValuePair.Split('=')[1];
-                    builder.AppendFormat("{0}={1}", key, value);
-                    if (i + 1 != execKeyValuePairs.Length)
-                    {
-                        builder.Append("&");
-                    }
+                    licenseProductData.KeyValuePairs.Add(key, value);
                 }
-                licenseProductData.KeyValuePairs.Add(RuntimeEnvironment.Client, builder.ToString());
             }
 
             licenseProductData.LicenseNo = textBoxLicenseNo.Text;
@@ -111,6 +105,7 @@ namespace Product.License.TestClient
             licenseProductData.ProjectName = textBoxProjectName.Text;
 
             string plainText = licenseProductData.GeneratePlainText();
+            richTextBoxBeforePlainTextLicenseProductData.Text = plainText;
         }
 
         #endregion

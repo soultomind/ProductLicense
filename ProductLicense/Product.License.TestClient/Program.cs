@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,15 @@ namespace Product.License.TestClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            ExecuteContext.InitEntry();
+
+            Application.Run(new MainForm(new LicenseFileData()
+            {
+                KeyFilePath = LicenseManager.DefaultLicenseKeyFilePath,
+                InitDataFilePath = LicenseManager.DefaultInitLicenseDataFilePath,
+                ExecDataFilePath = LicenseManager.DefaultExecLicenseDataFilePath
+            }));
         }
     }
 }

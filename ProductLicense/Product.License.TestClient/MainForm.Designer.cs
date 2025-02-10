@@ -74,6 +74,9 @@ namespace Product.License.TestClient
             this.richTextBoxConsole = new System.Windows.Forms.RichTextBox();
             this.contextMenuStripRichTextBoxConsole = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemClear = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelRuntimeEnvironment = new System.Windows.Forms.Label();
+            this.textBoxRuntimeEnvironment = new System.Windows.Forms.TextBox();
+            this.labelInputDescription = new System.Windows.Forms.Label();
             this.groupBoxLicesneCrypto.SuspendLayout();
             this.groupBoxCrypto.SuspendLayout();
             this.groupBoxLicenseProductData.SuspendLayout();
@@ -207,6 +210,9 @@ namespace Product.License.TestClient
             // 
             // groupBoxLicenseProductData
             // 
+            this.groupBoxLicenseProductData.Controls.Add(this.labelInputDescription);
+            this.groupBoxLicenseProductData.Controls.Add(this.textBoxRuntimeEnvironment);
+            this.groupBoxLicenseProductData.Controls.Add(this.labelRuntimeEnvironment);
             this.groupBoxLicenseProductData.Controls.Add(this.labelExecKeyValuePairs);
             this.groupBoxLicenseProductData.Controls.Add(this.textBoxProductIds);
             this.groupBoxLicenseProductData.Controls.Add(this.textBoxExecKeyValuePairs);
@@ -234,7 +240,7 @@ namespace Product.License.TestClient
             // 
             this.labelExecKeyValuePairs.AutoSize = true;
             this.labelExecKeyValuePairs.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelExecKeyValuePairs.Location = new System.Drawing.Point(27, 38);
+            this.labelExecKeyValuePairs.Location = new System.Drawing.Point(28, 94);
             this.labelExecKeyValuePairs.Name = "labelExecKeyValuePairs";
             this.labelExecKeyValuePairs.Size = new System.Drawing.Size(88, 15);
             this.labelExecKeyValuePairs.TabIndex = 43;
@@ -242,7 +248,7 @@ namespace Product.License.TestClient
             // 
             // textBoxProductIds
             // 
-            this.textBoxProductIds.Location = new System.Drawing.Point(142, 64);
+            this.textBoxProductIds.Location = new System.Drawing.Point(143, 120);
             this.textBoxProductIds.Name = "textBoxProductIds";
             this.textBoxProductIds.Size = new System.Drawing.Size(200, 23);
             this.textBoxProductIds.TabIndex = 28;
@@ -250,14 +256,14 @@ namespace Product.License.TestClient
             // 
             // textBoxExecKeyValuePairs
             // 
-            this.textBoxExecKeyValuePairs.Location = new System.Drawing.Point(142, 35);
+            this.textBoxExecKeyValuePairs.Location = new System.Drawing.Point(143, 91);
             this.textBoxExecKeyValuePairs.Name = "textBoxExecKeyValuePairs";
             this.textBoxExecKeyValuePairs.Size = new System.Drawing.Size(200, 23);
             this.textBoxExecKeyValuePairs.TabIndex = 42;
             // 
             // dateTimePickerIssueDate
             // 
-            this.dateTimePickerIssueDate.Location = new System.Drawing.Point(142, 93);
+            this.dateTimePickerIssueDate.Location = new System.Drawing.Point(143, 149);
             this.dateTimePickerIssueDate.Name = "dateTimePickerIssueDate";
             this.dateTimePickerIssueDate.Size = new System.Drawing.Size(200, 23);
             this.dateTimePickerIssueDate.TabIndex = 29;
@@ -267,7 +273,7 @@ namespace Product.License.TestClient
             // 
             this.labelOperationMode.AutoSize = true;
             this.labelOperationMode.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelOperationMode.Location = new System.Drawing.Point(27, 241);
+            this.labelOperationMode.Location = new System.Drawing.Point(28, 297);
             this.labelOperationMode.Name = "labelOperationMode";
             this.labelOperationMode.Size = new System.Drawing.Size(99, 15);
             this.labelOperationMode.TabIndex = 41;
@@ -275,7 +281,7 @@ namespace Product.License.TestClient
             // 
             // dateTimePickerExpireDate
             // 
-            this.dateTimePickerExpireDate.Location = new System.Drawing.Point(142, 122);
+            this.dateTimePickerExpireDate.Location = new System.Drawing.Point(143, 178);
             this.dateTimePickerExpireDate.Name = "dateTimePickerExpireDate";
             this.dateTimePickerExpireDate.Size = new System.Drawing.Size(200, 23);
             this.dateTimePickerExpireDate.TabIndex = 30;
@@ -285,7 +291,7 @@ namespace Product.License.TestClient
             // 
             this.labelProjectName.AutoSize = true;
             this.labelProjectName.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelProjectName.Location = new System.Drawing.Point(27, 212);
+            this.labelProjectName.Location = new System.Drawing.Point(28, 268);
             this.labelProjectName.Name = "labelProjectName";
             this.labelProjectName.Size = new System.Drawing.Size(82, 15);
             this.labelProjectName.TabIndex = 40;
@@ -293,7 +299,7 @@ namespace Product.License.TestClient
             // 
             // textBoxLicenseNo
             // 
-            this.textBoxLicenseNo.Location = new System.Drawing.Point(142, 151);
+            this.textBoxLicenseNo.Location = new System.Drawing.Point(143, 207);
             this.textBoxLicenseNo.Name = "textBoxLicenseNo";
             this.textBoxLicenseNo.Size = new System.Drawing.Size(200, 23);
             this.textBoxLicenseNo.TabIndex = 31;
@@ -303,7 +309,7 @@ namespace Product.License.TestClient
             // 
             this.labelCustomerName.AutoSize = true;
             this.labelCustomerName.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelCustomerName.Location = new System.Drawing.Point(27, 183);
+            this.labelCustomerName.Location = new System.Drawing.Point(28, 239);
             this.labelCustomerName.Name = "labelCustomerName";
             this.labelCustomerName.Size = new System.Drawing.Size(98, 15);
             this.labelCustomerName.TabIndex = 39;
@@ -311,7 +317,7 @@ namespace Product.License.TestClient
             // 
             // textBoxCustomerName
             // 
-            this.textBoxCustomerName.Location = new System.Drawing.Point(142, 180);
+            this.textBoxCustomerName.Location = new System.Drawing.Point(143, 236);
             this.textBoxCustomerName.Name = "textBoxCustomerName";
             this.textBoxCustomerName.Size = new System.Drawing.Size(200, 23);
             this.textBoxCustomerName.TabIndex = 32;
@@ -321,7 +327,7 @@ namespace Product.License.TestClient
             // 
             this.labelLicenseNo.AutoSize = true;
             this.labelLicenseNo.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelLicenseNo.Location = new System.Drawing.Point(27, 154);
+            this.labelLicenseNo.Location = new System.Drawing.Point(28, 210);
             this.labelLicenseNo.Name = "labelLicenseNo";
             this.labelLicenseNo.Size = new System.Drawing.Size(66, 15);
             this.labelLicenseNo.TabIndex = 38;
@@ -329,7 +335,7 @@ namespace Product.License.TestClient
             // 
             // textBoxProjectName
             // 
-            this.textBoxProjectName.Location = new System.Drawing.Point(142, 209);
+            this.textBoxProjectName.Location = new System.Drawing.Point(143, 265);
             this.textBoxProjectName.Name = "textBoxProjectName";
             this.textBoxProjectName.Size = new System.Drawing.Size(200, 23);
             this.textBoxProjectName.TabIndex = 33;
@@ -339,7 +345,7 @@ namespace Product.License.TestClient
             // 
             this.labelExpireDate.AutoSize = true;
             this.labelExpireDate.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelExpireDate.Location = new System.Drawing.Point(27, 128);
+            this.labelExpireDate.Location = new System.Drawing.Point(28, 184);
             this.labelExpireDate.Name = "labelExpireDate";
             this.labelExpireDate.Size = new System.Drawing.Size(70, 15);
             this.labelExpireDate.TabIndex = 37;
@@ -347,7 +353,7 @@ namespace Product.License.TestClient
             // 
             // textBoxOperationMode
             // 
-            this.textBoxOperationMode.Location = new System.Drawing.Point(142, 238);
+            this.textBoxOperationMode.Location = new System.Drawing.Point(143, 294);
             this.textBoxOperationMode.Name = "textBoxOperationMode";
             this.textBoxOperationMode.Size = new System.Drawing.Size(200, 23);
             this.textBoxOperationMode.TabIndex = 34;
@@ -357,7 +363,7 @@ namespace Product.License.TestClient
             // 
             this.labelIssueDate.AutoSize = true;
             this.labelIssueDate.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelIssueDate.Location = new System.Drawing.Point(27, 99);
+            this.labelIssueDate.Location = new System.Drawing.Point(28, 155);
             this.labelIssueDate.Name = "labelIssueDate";
             this.labelIssueDate.Size = new System.Drawing.Size(65, 15);
             this.labelIssueDate.TabIndex = 36;
@@ -367,7 +373,7 @@ namespace Product.License.TestClient
             // 
             this.labelProductIds.AutoSize = true;
             this.labelProductIds.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelProductIds.Location = new System.Drawing.Point(27, 67);
+            this.labelProductIds.Location = new System.Drawing.Point(28, 123);
             this.labelProductIds.Name = "labelProductIds";
             this.labelProductIds.Size = new System.Drawing.Size(74, 15);
             this.labelProductIds.TabIndex = 35;
@@ -524,6 +530,33 @@ namespace Product.License.TestClient
             this.ToolStripMenuItemClear.Text = "Clear";
             this.ToolStripMenuItemClear.Click += new System.EventHandler(this.RichTextBoxConsoleToolStripMenuItemClear_Click);
             // 
+            // labelRuntimeEnvironment
+            // 
+            this.labelRuntimeEnvironment.AutoSize = true;
+            this.labelRuntimeEnvironment.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.labelRuntimeEnvironment.Location = new System.Drawing.Point(28, 36);
+            this.labelRuntimeEnvironment.Name = "labelRuntimeEnvironment";
+            this.labelRuntimeEnvironment.Size = new System.Drawing.Size(126, 15);
+            this.labelRuntimeEnvironment.TabIndex = 44;
+            this.labelRuntimeEnvironment.Text = "RuntimeEnvironment";
+            // 
+            // textBoxRuntimeEnvironment
+            // 
+            this.textBoxRuntimeEnvironment.Location = new System.Drawing.Point(160, 33);
+            this.textBoxRuntimeEnvironment.Name = "textBoxRuntimeEnvironment";
+            this.textBoxRuntimeEnvironment.Size = new System.Drawing.Size(183, 23);
+            this.textBoxRuntimeEnvironment.TabIndex = 45;
+            this.textBoxRuntimeEnvironment.Text = "Client";
+            // 
+            // labelInputDescription
+            // 
+            this.labelInputDescription.AutoSize = true;
+            this.labelInputDescription.Location = new System.Drawing.Point(140, 70);
+            this.labelInputDescription.Name = "labelInputDescription";
+            this.labelInputDescription.Size = new System.Drawing.Size(149, 15);
+            this.labelInputDescription.TabIndex = 46;
+            this.labelInputDescription.Text = "Key1=Value1&Key2=Value2";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -597,6 +630,9 @@ namespace Product.License.TestClient
         private System.Windows.Forms.RichTextBox richTextBoxEnryptionPlainTextLicenseProductData;
         private System.Windows.Forms.Label labelBeforePlainTextLicenseProductData;
         private System.Windows.Forms.Label labelAfterPlainTextLicenseProductData;
+        private System.Windows.Forms.Label labelRuntimeEnvironment;
+        private System.Windows.Forms.TextBox textBoxRuntimeEnvironment;
+        private System.Windows.Forms.Label labelInputDescription;
     }
 }
 

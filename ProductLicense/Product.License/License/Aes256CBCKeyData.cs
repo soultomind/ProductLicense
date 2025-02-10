@@ -22,7 +22,7 @@ namespace Product.License
         /// <summary>
         /// Aes256 CBC IVBase64 정보
         /// </summary>
-        public string IVBase64 { get; internal set; }
+        public string IVBase64 { get; set; }
 
         /// <summary>
         /// Aes256 CBC IVBase64 디코딩 정보
@@ -38,7 +38,7 @@ namespace Product.License
         /// <summary>
         /// Aes256 CBC KeyBase64 정보
         /// </summary>
-        public string KeyBase64 { get; internal set; }
+        public string KeyBase64 { get; set; }
 
         /// <summary>
         /// Aes256 CBC KeyBase64 디코딩 정보
@@ -49,6 +49,11 @@ namespace Product.License
             {
                 return ConvertUtility.Base64Decode(KeyBase64);
             }
+        }
+
+        public Aes256CBCKeyData()
+        {
+
         }
 
         public Aes256CBCKeyData(string path)

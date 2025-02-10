@@ -100,7 +100,7 @@ namespace Product.License
                 }
                 else
                 {
-                    DefaultLicenseKeyFilePath = ExecuteContext.Directory + Path.DirectorySeparatorChar + "License.hcinskey";
+                    DefaultLicenseKeyFilePath = ExecuteContext.Directory + Path.DirectorySeparatorChar + "License.key";
                 }
 
                 value = ConfigurationManager.AppSettings[nameof(DefaultInitLicenseDataFilePath)];
@@ -118,7 +118,7 @@ namespace Product.License
                 }
                 else
                 {
-                    DefaultInitLicenseDataFilePath = ExecuteContext.Directory + Path.DirectorySeparatorChar + "InitLicenseData.hcinsdata";
+                    DefaultInitLicenseDataFilePath = ExecuteContext.Directory + Path.DirectorySeparatorChar + "InitLicenseData.data";
                 }
 
                 value = ConfigurationManager.AppSettings[nameof(DefaultExecLicenseDataFilePath)];
@@ -136,7 +136,7 @@ namespace Product.License
                 }
                 else
                 {
-                    DefaultExecLicenseDataFilePath = ExecuteContext.Directory + Path.DirectorySeparatorChar + "ExecLicenseData.hcinsdata";
+                    DefaultExecLicenseDataFilePath = ExecuteContext.Directory + Path.DirectorySeparatorChar + "ExecLicenseData.data";
                 }
             }
             else

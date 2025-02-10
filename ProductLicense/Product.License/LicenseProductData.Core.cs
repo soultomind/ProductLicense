@@ -8,7 +8,7 @@ namespace Product
 {
     public partial class LicenseProductData
     {
-        public static readonly char PropertyCollectionSplitChar = ':';
+        public static readonly char PropertyCollectionSplitChar = '&';
         public static readonly char PropertyKeyValueSplitChar = '=';
 
         public string GeneratePlainText()
@@ -23,8 +23,13 @@ namespace Product
             StringBuilder builder = new StringBuilder(256);
             if (KeyValuePairs.Count > 0)
             {
-                builder.Append(nameof(ExecMachineGuid)).Append(PropertyKeyValueSplitChar).Append(ExecMachineGuid);
+                builder.Append("RuntimeEnvironmentSize").Append(PropertyKeyValueSplitChar).Append(KeyValuePairs.Count);
                 builder.Append(PropertyCollectionSplitChar);
+                foreach (var keyValuePair in KeyValuePairs)
+                { 
+                    builder.Append(keyValuePair.Key).Append(PropertyKeyValueSplitChar).Append(keyValuePair.Value);
+                    builder.Append(PropertyCollectionSplitChar);
+                }
             }
             builder.Append(nameof(Ids)).Append(PropertyKeyValueSplitChar).Append(SplitCharProductIds);
             builder.Append(PropertyCollectionSplitChar);
