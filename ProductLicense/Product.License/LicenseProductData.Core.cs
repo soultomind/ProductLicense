@@ -11,6 +11,8 @@ namespace Product
         public static readonly char PropertyCollectionSplitChar = '&';
         public static readonly char PropertyKeyValueSplitChar = '=';
 
+        public static readonly string RuntimeEnvironmentSize = "RuntimeEnvironmentSize";
+
         public string GeneratePlainText()
         {
             // PlainText 구성 방향
@@ -23,7 +25,7 @@ namespace Product
             StringBuilder builder = new StringBuilder(256);
             if (KeyValuePairs.Count > 0)
             {
-                builder.Append("RuntimeEnvironmentSize").Append(PropertyKeyValueSplitChar).Append(KeyValuePairs.Count);
+                builder.Append(RuntimeEnvironmentSize).Append(PropertyKeyValueSplitChar).Append(KeyValuePairs.Count);
                 builder.Append(PropertyCollectionSplitChar);
                 foreach (var keyValuePair in KeyValuePairs)
                 { 

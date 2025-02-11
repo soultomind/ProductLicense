@@ -43,6 +43,9 @@ namespace Product.License.TestClient
             this.richTextBoxEnryptionPlainTextLicenseProductData = new System.Windows.Forms.RichTextBox();
             this.buttonDecryptLicenseProductData = new System.Windows.Forms.Button();
             this.groupBoxLicenseProductData = new System.Windows.Forms.GroupBox();
+            this.labelInputDescription = new System.Windows.Forms.Label();
+            this.textBoxRuntimeEnvironment = new System.Windows.Forms.TextBox();
+            this.labelRuntimeEnvironment = new System.Windows.Forms.Label();
             this.labelExecKeyValuePairs = new System.Windows.Forms.Label();
             this.textBoxProductIds = new System.Windows.Forms.TextBox();
             this.textBoxExecKeyValuePairs = new System.Windows.Forms.TextBox();
@@ -74,9 +77,7 @@ namespace Product.License.TestClient
             this.richTextBoxConsole = new System.Windows.Forms.RichTextBox();
             this.contextMenuStripRichTextBoxConsole = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemClear = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelRuntimeEnvironment = new System.Windows.Forms.Label();
-            this.textBoxRuntimeEnvironment = new System.Windows.Forms.TextBox();
-            this.labelInputDescription = new System.Windows.Forms.Label();
+            this.labelResult = new System.Windows.Forms.Label();
             this.groupBoxLicesneCrypto.SuspendLayout();
             this.groupBoxCrypto.SuspendLayout();
             this.groupBoxLicenseProductData.SuspendLayout();
@@ -111,6 +112,7 @@ namespace Product.License.TestClient
             // 
             // groupBoxCrypto
             // 
+            this.groupBoxCrypto.Controls.Add(this.labelResult);
             this.groupBoxCrypto.Controls.Add(this.labelAfterPlainTextLicenseProductData);
             this.groupBoxCrypto.Controls.Add(this.labelBeforePlainTextLicenseProductData);
             this.groupBoxCrypto.Controls.Add(this.richTextBoxAfterPlainTextLicenseProductData);
@@ -161,6 +163,7 @@ namespace Product.License.TestClient
             this.buttonEncryptionPlainTextLicenseProductData.TabIndex = 8;
             this.buttonEncryptionPlainTextLicenseProductData.Text = "암호화 ▼";
             this.buttonEncryptionPlainTextLicenseProductData.UseVisualStyleBackColor = true;
+            this.buttonEncryptionPlainTextLicenseProductData.Click += new System.EventHandler(this.ButtonEncryptionPlainTextLicenseProductData_Click);
             // 
             // labelEnryptionPlainTextLicenseProductData
             // 
@@ -188,6 +191,7 @@ namespace Product.License.TestClient
             this.buttonDecryptionPlainTextLicenseProductData.TabIndex = 10;
             this.buttonDecryptionPlainTextLicenseProductData.Text = "복호화 ▼";
             this.buttonDecryptionPlainTextLicenseProductData.UseVisualStyleBackColor = true;
+            this.buttonDecryptionPlainTextLicenseProductData.Click += new System.EventHandler(this.ButtonDecryptionPlainTextLicenseProductData_Click);
             // 
             // richTextBoxEnryptionPlainTextLicenseProductData
             // 
@@ -235,6 +239,33 @@ namespace Product.License.TestClient
             this.groupBoxLicenseProductData.TabIndex = 44;
             this.groupBoxLicenseProductData.TabStop = false;
             this.groupBoxLicenseProductData.Text = "LicenseProductData";
+            // 
+            // labelInputDescription
+            // 
+            this.labelInputDescription.AutoSize = true;
+            this.labelInputDescription.Location = new System.Drawing.Point(140, 70);
+            this.labelInputDescription.Name = "labelInputDescription";
+            this.labelInputDescription.Size = new System.Drawing.Size(149, 15);
+            this.labelInputDescription.TabIndex = 46;
+            this.labelInputDescription.Text = "Key1=Value1&Key2=Value2";
+            // 
+            // textBoxRuntimeEnvironment
+            // 
+            this.textBoxRuntimeEnvironment.Location = new System.Drawing.Point(160, 33);
+            this.textBoxRuntimeEnvironment.Name = "textBoxRuntimeEnvironment";
+            this.textBoxRuntimeEnvironment.Size = new System.Drawing.Size(183, 23);
+            this.textBoxRuntimeEnvironment.TabIndex = 45;
+            this.textBoxRuntimeEnvironment.Text = "Client";
+            // 
+            // labelRuntimeEnvironment
+            // 
+            this.labelRuntimeEnvironment.AutoSize = true;
+            this.labelRuntimeEnvironment.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.labelRuntimeEnvironment.Location = new System.Drawing.Point(28, 36);
+            this.labelRuntimeEnvironment.Name = "labelRuntimeEnvironment";
+            this.labelRuntimeEnvironment.Size = new System.Drawing.Size(126, 15);
+            this.labelRuntimeEnvironment.TabIndex = 44;
+            this.labelRuntimeEnvironment.Text = "RuntimeEnvironment";
             // 
             // labelExecKeyValuePairs
             // 
@@ -530,32 +561,13 @@ namespace Product.License.TestClient
             this.ToolStripMenuItemClear.Text = "Clear";
             this.ToolStripMenuItemClear.Click += new System.EventHandler(this.RichTextBoxConsoleToolStripMenuItemClear_Click);
             // 
-            // labelRuntimeEnvironment
+            // labelResult
             // 
-            this.labelRuntimeEnvironment.AutoSize = true;
-            this.labelRuntimeEnvironment.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelRuntimeEnvironment.Location = new System.Drawing.Point(28, 36);
-            this.labelRuntimeEnvironment.Name = "labelRuntimeEnvironment";
-            this.labelRuntimeEnvironment.Size = new System.Drawing.Size(126, 15);
-            this.labelRuntimeEnvironment.TabIndex = 44;
-            this.labelRuntimeEnvironment.Text = "RuntimeEnvironment";
-            // 
-            // textBoxRuntimeEnvironment
-            // 
-            this.textBoxRuntimeEnvironment.Location = new System.Drawing.Point(160, 33);
-            this.textBoxRuntimeEnvironment.Name = "textBoxRuntimeEnvironment";
-            this.textBoxRuntimeEnvironment.Size = new System.Drawing.Size(183, 23);
-            this.textBoxRuntimeEnvironment.TabIndex = 45;
-            this.textBoxRuntimeEnvironment.Text = "Client";
-            // 
-            // labelInputDescription
-            // 
-            this.labelInputDescription.AutoSize = true;
-            this.labelInputDescription.Location = new System.Drawing.Point(140, 70);
-            this.labelInputDescription.Name = "labelInputDescription";
-            this.labelInputDescription.Size = new System.Drawing.Size(149, 15);
-            this.labelInputDescription.TabIndex = 46;
-            this.labelInputDescription.Text = "Key1=Value1&Key2=Value2";
+            this.labelResult.AutoSize = true;
+            this.labelResult.Location = new System.Drawing.Point(18, 382);
+            this.labelResult.Name = "labelResult";
+            this.labelResult.Size = new System.Drawing.Size(0, 15);
+            this.labelResult.TabIndex = 16;
             // 
             // MainForm
             // 
@@ -633,6 +645,7 @@ namespace Product.License.TestClient
         private System.Windows.Forms.Label labelRuntimeEnvironment;
         private System.Windows.Forms.TextBox textBoxRuntimeEnvironment;
         private System.Windows.Forms.Label labelInputDescription;
+        private System.Windows.Forms.Label labelResult;
     }
 }
 

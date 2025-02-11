@@ -51,6 +51,24 @@ namespace Product.License.TestClient
 
         #region GroupBox LicenseCrypto
 
+        public string BeforePlainTextLicenseProductData
+        {
+            get { return richTextBoxBeforePlainTextLicenseProductData.Text; }
+            set { richTextBoxBeforePlainTextLicenseProductData.Text = value; }
+        }
+
+        public string EnryptionPlainTextLicenseProductData
+        {
+            get { return richTextBoxEnryptionPlainTextLicenseProductData.Text; }
+            set { richTextBoxEnryptionPlainTextLicenseProductData.Text = value; }
+        }
+
+        public string AfterPlainTextLicenseProductData
+        {
+            get { return richTextBoxAfterPlainTextLicenseProductData.Text; }
+            set { richTextBoxAfterPlainTextLicenseProductData.Text = value; }
+        }
+
         private void InitGroupBoxLicenseCrypto()
         {
 
@@ -104,8 +122,41 @@ namespace Product.License.TestClient
             licenseProductData.CustomerName = textBoxCustomerName.Text;
             licenseProductData.ProjectName = textBoxProjectName.Text;
 
-            string plainText = licenseProductData.GeneratePlainText();
-            richTextBoxBeforePlainTextLicenseProductData.Text = plainText;
+            string beforePlainText = licenseProductData.GeneratePlainText();
+            BeforePlainTextLicenseProductData = beforePlainText;
+        }
+
+        private void ButtonEncryptionPlainTextLicenseProductData_Click(object sender, EventArgs e)
+        {
+            string beforePlainText = BeforePlainTextLicenseProductData;
+            string encryptedText = Crypto.Encrypt(beforePlainText);
+            EnryptionPlainTextLicenseProductData = encryptedText;
+        }
+
+        private async void ButtonDecryptionPlainTextLicenseProductData_Click(object sender, EventArgs e)
+        {
+            string encryptedText = EnryptionPlainTextLicenseProductData;
+            string decryptedText = Crypto.Decrypt(encryptedText);
+            AfterPlainTextLicenseProductData = decryptedText;
+
+            await SetLabelResultTextAsync();
+            
+        }
+
+        private async Task SetLabelResultTextAsync()
+        {
+            await Task.Delay(1000);
+            if (BeforePlainTextLicenseProductData.Equals(AfterPlainTextLicenseProductData))
+            {
+                labelResult.Text = "결과 : 성공";
+            }
+            else
+            {
+                labelResult.Text = "결과 : 실패";
+            }
+
+            await Task.Delay(3000);
+            labelResult.Text = "";
         }
 
         #endregion
@@ -241,7 +292,9 @@ namespace Product.License.TestClient
         }
 
 
+
         #endregion
+
         
     }
 }
