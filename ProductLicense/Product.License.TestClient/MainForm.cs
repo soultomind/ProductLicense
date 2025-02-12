@@ -133,6 +133,22 @@ namespace Product.License.TestClient
             EnryptionPlainTextLicenseProductData = encryptedText;
         }
 
+        private void ButtonEncryptionPlainTextLicenseProductDataCreateFile_Click(object sender, EventArgs e)
+        {
+            string encryptedText = EnryptionPlainTextLicenseProductData;
+
+            FileDialogResult result = ShowSaveFileDialog(LicenseManager.DataFileFilter);
+            if (result.DialogResult != DialogResult.OK)
+            {
+                return;
+            }
+
+            using (StreamWriter sw = new StreamWriter(result.Path))
+            {
+                sw.WriteLine(encryptedText);
+            }
+        }
+
         private async void ButtonDecryptionPlainTextLicenseProductData_Click(object sender, EventArgs e)
         {
             string encryptedText = EnryptionPlainTextLicenseProductData;
@@ -140,7 +156,6 @@ namespace Product.License.TestClient
             AfterPlainTextLicenseProductData = decryptedText;
 
             await SetLabelResultTextAsync();
-            
         }
 
         private async Task SetLabelResultTextAsync()
@@ -293,8 +308,7 @@ namespace Product.License.TestClient
 
 
 
-        #endregion
 
-        
+        #endregion
     }
 }

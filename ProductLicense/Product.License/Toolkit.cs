@@ -46,7 +46,7 @@ namespace Product
             IncludeFilterName = CreateNamespace();
             IsDebugEnabled = true;
 #else
-            IncludeFilterName = "SoulToMind";
+            IncludeFilterName = "ProductLicense";
             IsDebugEnabled = false;
 #endif
             IsTraceEnabled = true;

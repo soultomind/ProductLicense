@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Product.License.TestClient
 {
@@ -24,6 +25,25 @@ namespace Product.License.TestClient
 
                 Crypto = new Aes256CBCCrypto(keyData.IVBase64, keyData.KeyBase64);
             }
+        }
+
+        internal FileDialogResult ShowSaveFileDialog(string filter)
+        {
+            string path = String.Empty;
+            DialogResult dialogResult = DialogResult.OK;
+            using (SaveFileDialog dlg = new SaveFileDialog())
+            {
+                dlg.InitialDirectory = Application.StartupPath;
+                dlg.Filter = filter;
+
+                dialogResult = dlg.ShowDialog(this);
+                if (dialogResult == DialogResult.OK)
+                {
+                    path = dlg.FileName;
+                }
+            }
+
+            return new SaveFileDialogResult() { Path = path, DialogResult = dialogResult };
         }
     }
 }

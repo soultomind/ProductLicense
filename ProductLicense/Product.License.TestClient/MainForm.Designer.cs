@@ -33,6 +33,7 @@ namespace Product.License.TestClient
             this.groupBoxLicesneCrypto = new System.Windows.Forms.GroupBox();
             this.buttonGenerateLicenseProductDataPlainText = new System.Windows.Forms.Button();
             this.groupBoxCrypto = new System.Windows.Forms.GroupBox();
+            this.labelResult = new System.Windows.Forms.Label();
             this.labelAfterPlainTextLicenseProductData = new System.Windows.Forms.Label();
             this.labelBeforePlainTextLicenseProductData = new System.Windows.Forms.Label();
             this.richTextBoxAfterPlainTextLicenseProductData = new System.Windows.Forms.RichTextBox();
@@ -77,7 +78,7 @@ namespace Product.License.TestClient
             this.richTextBoxConsole = new System.Windows.Forms.RichTextBox();
             this.contextMenuStripRichTextBoxConsole = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemClear = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelResult = new System.Windows.Forms.Label();
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile = new System.Windows.Forms.Button();
             this.groupBoxLicesneCrypto.SuspendLayout();
             this.groupBoxCrypto.SuspendLayout();
             this.groupBoxLicenseProductData.SuspendLayout();
@@ -112,6 +113,7 @@ namespace Product.License.TestClient
             // 
             // groupBoxCrypto
             // 
+            this.groupBoxCrypto.Controls.Add(this.buttonEncryptionPlainTextLicenseProductDataCreateFile);
             this.groupBoxCrypto.Controls.Add(this.labelResult);
             this.groupBoxCrypto.Controls.Add(this.labelAfterPlainTextLicenseProductData);
             this.groupBoxCrypto.Controls.Add(this.labelBeforePlainTextLicenseProductData);
@@ -127,6 +129,14 @@ namespace Product.License.TestClient
             this.groupBoxCrypto.TabIndex = 52;
             this.groupBoxCrypto.TabStop = false;
             this.groupBoxCrypto.Text = "LicenseProductData Crypto";
+            // 
+            // labelResult
+            // 
+            this.labelResult.AutoSize = true;
+            this.labelResult.Location = new System.Drawing.Point(18, 382);
+            this.labelResult.Name = "labelResult";
+            this.labelResult.Size = new System.Drawing.Size(0, 15);
+            this.labelResult.TabIndex = 16;
             // 
             // labelAfterPlainTextLicenseProductData
             // 
@@ -561,13 +571,15 @@ namespace Product.License.TestClient
             this.ToolStripMenuItemClear.Text = "Clear";
             this.ToolStripMenuItemClear.Click += new System.EventHandler(this.RichTextBoxConsoleToolStripMenuItemClear_Click);
             // 
-            // labelResult
+            // buttonEncryptionPlainTextLicenseProductDataCreateFile
             // 
-            this.labelResult.AutoSize = true;
-            this.labelResult.Location = new System.Drawing.Point(18, 382);
-            this.labelResult.Name = "labelResult";
-            this.labelResult.Size = new System.Drawing.Size(0, 15);
-            this.labelResult.TabIndex = 16;
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Location = new System.Drawing.Point(272, 123);
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Name = "buttonEncryptionPlainTextLicenseProductDataCreateFile";
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Size = new System.Drawing.Size(149, 23);
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.TabIndex = 17;
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Text = "암호화 파일 생성";
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.UseVisualStyleBackColor = true;
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Click += new System.EventHandler(this.ButtonEncryptionPlainTextLicenseProductDataCreateFile_Click);
             // 
             // MainForm
             // 
@@ -646,6 +658,7 @@ namespace Product.License.TestClient
         private System.Windows.Forms.TextBox textBoxRuntimeEnvironment;
         private System.Windows.Forms.Label labelInputDescription;
         private System.Windows.Forms.Label labelResult;
+        private System.Windows.Forms.Button buttonEncryptionPlainTextLicenseProductDataCreateFile;
     }
 }
 
