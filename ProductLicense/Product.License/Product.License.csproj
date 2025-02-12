@@ -56,7 +56,7 @@
     <Compile Include="License\ICrypto.cs" />
     <Compile Include="License\LicenseException.cs" />
     <Compile Include="License\LicenseManager.cs" />
-    <Compile Include="License\ProcessResult.cs" />
+    <Compile Include="License\LicenseProcessResult.cs" />
     <Compile Include="OperationMode.cs" />
     <Compile Include="LicenseProductData.Core.cs" />
     <Compile Include="LicenseProductData.cs" />

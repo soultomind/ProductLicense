@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Product.License
 {
-    public enum ProcessResult
+    public enum LicenseProcessResult
     {
         /// <summary>
         /// 초기화

@@ -163,7 +163,7 @@ namespace Product.License
         /// <summary>
         /// 처리 결과
         /// </summary>
-        public ProcessResult ProcessResult { get; internal set; } = ProcessResult.Init;
+        public LicenseProcessResult ProcessResult { get; internal set; } = LicenseProcessResult.Init;
 
         /// <summary>
         /// 예외
@@ -195,7 +195,7 @@ namespace Product.License
             LicenseKeyFilePath = licenseKeyFilePath;
             if (!File.Exists(LicenseKeyFilePath))
             {
-                ProcessResult = ProcessResult.FileNotFoundLicenseKey;
+                ProcessResult = LicenseProcessResult.FileNotFoundLicenseKey;
             }
         }
 
@@ -212,7 +212,7 @@ namespace Product.License
             catch (Exception ex)
             {
                 Exception = ex;
-                ProcessResult = ProcessResult.FailedReadExecLicenseDataFile;
+                ProcessResult = LicenseProcessResult.FailedReadExecLicenseDataFile;
                 return false;
             }
 
@@ -234,7 +234,7 @@ namespace Product.License
             catch (Exception ex)
             {
                 Exception = ex;
-                ProcessResult = ProcessResult.FailedDecryptExecLicenseData;
+                ProcessResult = LicenseProcessResult.FailedDecryptExecLicenseData;
                 return false;
             }
 
@@ -247,7 +247,7 @@ namespace Product.License
             catch (Exception ex)
             {
                 Exception = ex;
-                ProcessResult = ProcessResult.FailedParseExecPlainText;
+                ProcessResult = LicenseProcessResult.FailedParseExecPlainText;
                 return false;
             }
 
@@ -261,7 +261,7 @@ namespace Product.License
             {
                 //ConsoleAppendText("MachineGuid 값이 일치하지 않습니다. 관리자에게 문의하세요.");
                 bValidation = false;
-                ProcessResult = ProcessResult.NotEqualMachineGuid;
+                ProcessResult = LicenseProcessResult.NotEqualMachineGuid;
             }
             else
             {
@@ -280,7 +280,7 @@ namespace Product.License
                 {
                     //ConsoleAppendText(String.Format("해당 라이선스는 {0} 날짜부터 사용이 가능합니다.", now));
                     bValidation = false;
-                    ProcessResult = ProcessResult.IssueDateTime;
+                    ProcessResult = LicenseProcessResult.IssueDateTime;
                 }
                 else
                 {
@@ -298,7 +298,7 @@ namespace Product.License
                 {
                     //ConsoleAppendText("라이선스 유효기간이 지났습니다. 관리자에게 문의하세요.");
                     bValidation = false;
-                    ProcessResult = ProcessResult.ExpireDateTime;
+                    ProcessResult = LicenseProcessResult.ExpireDateTime;
                 }
                 else
                 {
@@ -317,7 +317,7 @@ namespace Product.License
             }
 
             LicenseManager licenseManager = new LicenseManager(licenseKeyFilePath);
-            if (licenseManager.ProcessResult == ProcessResult.FileNotFoundLicenseKey)
+            if (licenseManager.ProcessResult == LicenseProcessResult.FileNotFoundLicenseKey)
             {
                 return licenseManager;
             }
@@ -331,7 +331,7 @@ namespace Product.License
                 catch (Exception ex)
                 {
                     licenseManager.Exception = ex;
-                    licenseManager.ProcessResult = ProcessResult.FailedUserCreateCrypto;
+                    licenseManager.ProcessResult = LicenseProcessResult.FailedUserCreateCrypto;
                     return licenseManager;
                 }
             }
@@ -353,7 +353,7 @@ namespace Product.License
                 catch (Exception ex)
                 {
                     licenseManager.Exception = ex;
-                    licenseManager.ProcessResult = ProcessResult.FailedCreateCrypto;
+                    licenseManager.ProcessResult = LicenseProcessResult.FailedCreateCrypto;
                     return licenseManager;
                 }
             }
@@ -375,7 +375,7 @@ namespace Product.License
 
             if (!File.Exists(initLicenseDataFilePath))
             {
-                licenseManager.ProcessResult = ProcessResult.FileNotFoundInitLicenseData;
+                licenseManager.ProcessResult = LicenseProcessResult.FileNotFoundInitLicenseData;
                 return licenseManager;
             }
 
@@ -390,7 +390,7 @@ namespace Product.License
             catch (Exception ex)
             {
                 licenseManager.Exception = ex;
-                licenseManager.ProcessResult = ProcessResult.FailedReadInitLicenseDataFile;
+                licenseManager.ProcessResult = LicenseProcessResult.FailedReadInitLicenseDataFile;
                 return licenseManager;
             }
 
@@ -402,7 +402,7 @@ namespace Product.License
             catch (Exception ex)
             {
                 licenseManager.Exception = ex;
-                licenseManager.ProcessResult = ProcessResult.FailedDecryptInitLicenseData;
+                licenseManager.ProcessResult = LicenseProcessResult.FailedDecryptInitLicenseData;
                 return licenseManager;
             }
 
@@ -415,7 +415,7 @@ namespace Product.License
             catch (Exception ex)
             {
                 licenseManager.Exception = ex;
-                licenseManager.ProcessResult = ProcessResult.FailedParseInitPlainText;
+                licenseManager.ProcessResult = LicenseProcessResult.FailedParseInitPlainText;
                 return licenseManager;
             }
 
@@ -428,7 +428,7 @@ namespace Product.License
             catch (Exception ex)
             {
                 licenseManager.Exception = ex;
-                licenseManager.ProcessResult = ProcessResult.FailedEncryptExecLicenseData;
+                licenseManager.ProcessResult = LicenseProcessResult.FailedEncryptExecLicenseData;
                 return licenseManager;
             }
 
@@ -438,7 +438,7 @@ namespace Product.License
             }
             licenseManager.ExecLicenseDataFilePath = execLicenseDataFilePath;
 
-            licenseManager.ProcessResult = ProcessResult.InitSuccess;
+            licenseManager.ProcessResult = LicenseProcessResult.InitSuccess;
             return licenseManager;
         }
 
@@ -454,7 +454,7 @@ namespace Product.License
             LicenseManager licenseManager = NewInitLicenseManager(licenseKeyFilePath);
             licenseManager.ExecLicenseDataFilePath = execLicenseDataFilePath;
 
-            licenseManager.ProcessResult = ProcessResult.InitSuccess;
+            licenseManager.ProcessResult = LicenseProcessResult.InitSuccess;
             return licenseManager;
         }
     }
