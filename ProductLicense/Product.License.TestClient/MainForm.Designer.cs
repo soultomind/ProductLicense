@@ -33,6 +33,7 @@ namespace Product.License.TestClient
             this.groupBoxLicesneCrypto = new System.Windows.Forms.GroupBox();
             this.buttonGenerateLicenseProductDataPlainText = new System.Windows.Forms.Button();
             this.groupBoxCrypto = new System.Windows.Forms.GroupBox();
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile = new System.Windows.Forms.Button();
             this.labelResult = new System.Windows.Forms.Label();
             this.labelAfterPlainTextLicenseProductData = new System.Windows.Forms.Label();
             this.labelBeforePlainTextLicenseProductData = new System.Windows.Forms.Label();
@@ -78,7 +79,15 @@ namespace Product.License.TestClient
             this.richTextBoxConsole = new System.Windows.Forms.RichTextBox();
             this.contextMenuStripRichTextBoxConsole = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemClear = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonEncryptionPlainTextLicenseProductDataCreateFile = new System.Windows.Forms.Button();
+            this.richTextBoxAes256KeyText = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxAes256IVText = new System.Windows.Forms.RichTextBox();
+            this.labelAes256KeyText = new System.Windows.Forms.Label();
+            this.labelAes256IVText = new System.Windows.Forms.Label();
+            this.richTextBoxAes256IVBase64 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxAes256KeyBase64 = new System.Windows.Forms.RichTextBox();
+            this.buttonAes256Base64Data = new System.Windows.Forms.Button();
+            this.labelAes256IVBase64 = new System.Windows.Forms.Label();
+            this.labelAes256KeyBase64 = new System.Windows.Forms.Label();
             this.groupBoxLicesneCrypto.SuspendLayout();
             this.groupBoxCrypto.SuspendLayout();
             this.groupBoxLicenseProductData.SuspendLayout();
@@ -88,6 +97,15 @@ namespace Product.License.TestClient
             // 
             // groupBoxLicesneCrypto
             // 
+            this.groupBoxLicesneCrypto.Controls.Add(this.labelAes256IVBase64);
+            this.groupBoxLicesneCrypto.Controls.Add(this.labelAes256KeyBase64);
+            this.groupBoxLicesneCrypto.Controls.Add(this.buttonAes256Base64Data);
+            this.groupBoxLicesneCrypto.Controls.Add(this.richTextBoxAes256IVBase64);
+            this.groupBoxLicesneCrypto.Controls.Add(this.richTextBoxAes256KeyBase64);
+            this.groupBoxLicesneCrypto.Controls.Add(this.labelAes256IVText);
+            this.groupBoxLicesneCrypto.Controls.Add(this.labelAes256KeyText);
+            this.groupBoxLicesneCrypto.Controls.Add(this.richTextBoxAes256IVText);
+            this.groupBoxLicesneCrypto.Controls.Add(this.richTextBoxAes256KeyText);
             this.groupBoxLicesneCrypto.Controls.Add(this.buttonGenerateLicenseProductDataPlainText);
             this.groupBoxLicesneCrypto.Controls.Add(this.groupBoxCrypto);
             this.groupBoxLicesneCrypto.Controls.Add(this.buttonDecryptLicenseProductData);
@@ -129,6 +147,16 @@ namespace Product.License.TestClient
             this.groupBoxCrypto.TabIndex = 52;
             this.groupBoxCrypto.TabStop = false;
             this.groupBoxCrypto.Text = "LicenseProductData Crypto";
+            // 
+            // buttonEncryptionPlainTextLicenseProductDataCreateFile
+            // 
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Location = new System.Drawing.Point(272, 123);
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Name = "buttonEncryptionPlainTextLicenseProductDataCreateFile";
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Size = new System.Drawing.Size(149, 23);
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.TabIndex = 17;
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Text = "암호화 파일 생성";
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.UseVisualStyleBackColor = true;
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Click += new System.EventHandler(this.ButtonEncryptionPlainTextLicenseProductDataCreateFile_Click);
             // 
             // labelResult
             // 
@@ -255,9 +283,9 @@ namespace Product.License.TestClient
             this.labelInputDescription.AutoSize = true;
             this.labelInputDescription.Location = new System.Drawing.Point(140, 70);
             this.labelInputDescription.Name = "labelInputDescription";
-            this.labelInputDescription.Size = new System.Drawing.Size(149, 15);
+            this.labelInputDescription.Size = new System.Drawing.Size(159, 15);
             this.labelInputDescription.TabIndex = 46;
-            this.labelInputDescription.Text = "Key1=Value1&Key2=Value2";
+            this.labelInputDescription.Text = "Key1=Value1&&Key2=Value2";
             // 
             // textBoxRuntimeEnvironment
             // 
@@ -571,15 +599,83 @@ namespace Product.License.TestClient
             this.ToolStripMenuItemClear.Text = "Clear";
             this.ToolStripMenuItemClear.Click += new System.EventHandler(this.RichTextBoxConsoleToolStripMenuItemClear_Click);
             // 
-            // buttonEncryptionPlainTextLicenseProductDataCreateFile
+            // richTextBoxAes256KeyText
             // 
-            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Location = new System.Drawing.Point(272, 123);
-            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Name = "buttonEncryptionPlainTextLicenseProductDataCreateFile";
-            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Size = new System.Drawing.Size(149, 23);
-            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.TabIndex = 17;
-            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Text = "암호화 파일 생성";
-            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.UseVisualStyleBackColor = true;
-            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Click += new System.EventHandler(this.ButtonEncryptionPlainTextLicenseProductDataCreateFile_Click);
+            this.richTextBoxAes256KeyText.Location = new System.Drawing.Point(520, 113);
+            this.richTextBoxAes256KeyText.Name = "richTextBoxAes256KeyText";
+            this.richTextBoxAes256KeyText.Size = new System.Drawing.Size(148, 37);
+            this.richTextBoxAes256KeyText.TabIndex = 47;
+            this.richTextBoxAes256KeyText.Text = "Copyright C Hancom innostream.";
+            // 
+            // richTextBoxAes256IVText
+            // 
+            this.richTextBoxAes256IVText.Location = new System.Drawing.Point(520, 49);
+            this.richTextBoxAes256IVText.Name = "richTextBoxAes256IVText";
+            this.richTextBoxAes256IVText.Size = new System.Drawing.Size(148, 37);
+            this.richTextBoxAes256IVText.TabIndex = 54;
+            this.richTextBoxAes256IVText.Text = "Hancominnostream";
+            // 
+            // labelAes256KeyText
+            // 
+            this.labelAes256KeyText.AutoSize = true;
+            this.labelAes256KeyText.Location = new System.Drawing.Point(517, 95);
+            this.labelAes256KeyText.Name = "labelAes256KeyText";
+            this.labelAes256KeyText.Size = new System.Drawing.Size(96, 15);
+            this.labelAes256KeyText.TabIndex = 55;
+            this.labelAes256KeyText.Text = "Aes256 Key Text";
+            // 
+            // labelAes256IVText
+            // 
+            this.labelAes256IVText.AutoSize = true;
+            this.labelAes256IVText.Location = new System.Drawing.Point(517, 31);
+            this.labelAes256IVText.Name = "labelAes256IVText";
+            this.labelAes256IVText.Size = new System.Drawing.Size(88, 15);
+            this.labelAes256IVText.TabIndex = 56;
+            this.labelAes256IVText.Text = "Aes256 IV Text";
+            // 
+            // richTextBoxAes256IVBase64
+            // 
+            this.richTextBoxAes256IVBase64.Location = new System.Drawing.Point(772, 49);
+            this.richTextBoxAes256IVBase64.Name = "richTextBoxAes256IVBase64";
+            this.richTextBoxAes256IVBase64.Size = new System.Drawing.Size(148, 37);
+            this.richTextBoxAes256IVBase64.TabIndex = 58;
+            this.richTextBoxAes256IVBase64.Text = "";
+            // 
+            // richTextBoxAes256KeyBase64
+            // 
+            this.richTextBoxAes256KeyBase64.Location = new System.Drawing.Point(772, 113);
+            this.richTextBoxAes256KeyBase64.Name = "richTextBoxAes256KeyBase64";
+            this.richTextBoxAes256KeyBase64.Size = new System.Drawing.Size(148, 37);
+            this.richTextBoxAes256KeyBase64.TabIndex = 57;
+            this.richTextBoxAes256KeyBase64.Text = "";
+            // 
+            // buttonAes256Base64Data
+            // 
+            this.buttonAes256Base64Data.Location = new System.Drawing.Point(707, 83);
+            this.buttonAes256Base64Data.Name = "buttonAes256Base64Data";
+            this.buttonAes256Base64Data.Size = new System.Drawing.Size(30, 30);
+            this.buttonAes256Base64Data.TabIndex = 59;
+            this.buttonAes256Base64Data.Text = "▶";
+            this.buttonAes256Base64Data.UseVisualStyleBackColor = true;
+            this.buttonAes256Base64Data.Click += new System.EventHandler(this.ButtonAes256Base64Data_Click);
+            // 
+            // labelAes256IVBase64
+            // 
+            this.labelAes256IVBase64.AutoSize = true;
+            this.labelAes256IVBase64.Location = new System.Drawing.Point(769, 31);
+            this.labelAes256IVBase64.Name = "labelAes256IVBase64";
+            this.labelAes256IVBase64.Size = new System.Drawing.Size(104, 15);
+            this.labelAes256IVBase64.TabIndex = 61;
+            this.labelAes256IVBase64.Text = "Aes256 IV Base64";
+            // 
+            // labelAes256KeyBase64
+            // 
+            this.labelAes256KeyBase64.AutoSize = true;
+            this.labelAes256KeyBase64.Location = new System.Drawing.Point(769, 95);
+            this.labelAes256KeyBase64.Name = "labelAes256KeyBase64";
+            this.labelAes256KeyBase64.Size = new System.Drawing.Size(112, 15);
+            this.labelAes256KeyBase64.TabIndex = 60;
+            this.labelAes256KeyBase64.Text = "Aes256 Key Base64";
             // 
             // MainForm
             // 
@@ -659,6 +755,15 @@ namespace Product.License.TestClient
         private System.Windows.Forms.Label labelInputDescription;
         private System.Windows.Forms.Label labelResult;
         private System.Windows.Forms.Button buttonEncryptionPlainTextLicenseProductDataCreateFile;
+        private System.Windows.Forms.Label labelAes256IVBase64;
+        private System.Windows.Forms.Label labelAes256KeyBase64;
+        private System.Windows.Forms.Button buttonAes256Base64Data;
+        private System.Windows.Forms.RichTextBox richTextBoxAes256IVBase64;
+        private System.Windows.Forms.RichTextBox richTextBoxAes256KeyBase64;
+        private System.Windows.Forms.Label labelAes256IVText;
+        private System.Windows.Forms.Label labelAes256KeyText;
+        private System.Windows.Forms.RichTextBox richTextBoxAes256IVText;
+        private System.Windows.Forms.RichTextBox richTextBoxAes256KeyText;
     }
 }
 

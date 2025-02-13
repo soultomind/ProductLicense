@@ -79,9 +79,11 @@ namespace Product.License.TestClient
             string encryptedText = richTextBoxEncryptedtLicenseData.Text;
             string plainText = new Aes256CBCCrypto().Decrypt(encryptedText);
 
-            LicenseProductData licenseProductData = null;
+            LicenseProductData licenseProductData = LicenseProductData.Parse(plainText);
             if (licenseProductData != null)
             {
+                textBoxRuntimeEnvironment.Text = licenseProductData.RuntimeEnvironment.ToString();
+
                 textBoxExecKeyValuePairs.Text = licenseProductData.ExecMachineGuid;
                 textBoxProductIds.Text = licenseProductData.SplitCharProductIds;
                 dateTimePickerIssueDate.Value = licenseProductData.IssueDateTime;
@@ -310,5 +312,57 @@ namespace Product.License.TestClient
 
 
         #endregion
+
+        private void ButtonAes256Base64Data_Click(object sender, EventArgs e)
+        {
+            string ivPlainText = richTextBoxAes256IVText.Text;
+            string ivEncryptedBase64 = null;
+            IList<byte> ivEncryptedBase64Bytes = null;
+
+            if (Aes256CBCKeyGenerator.TryGetEncryptedIVBase64(ivPlainText, out ivEncryptedBase64, out ivEncryptedBase64Bytes))
+            {
+                string ivDecryptedKeyBase64 = null;
+                if (Aes256CBCKeyGenerator.TryGetDecryptedBase64(ivEncryptedBase64Bytes, out ivDecryptedKeyBase64))
+                {
+                    Trace.WriteLine("ivEncryptedBase64=" + ivEncryptedBase64);
+                    Trace.WriteLine("ivDecryptedKeyBase64=" + ivDecryptedKeyBase64);
+
+                    string decryptedIvPlainText = ConvertUtility.Base64Decode(ivDecryptedKeyBase64);
+                    Trace.WriteLine("decryptedIvPlainText=" + decryptedIvPlainText);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+
+            string keyPlainText = richTextBoxAes256KeyText.Text;
+            string keyEncryptedBase64 = null;
+            IList<byte> keyEncryptedBase64Bytes = null;
+            if (Aes256CBCKeyGenerator.TryGetEncryptedKeyBase64(keyPlainText, out keyEncryptedBase64, out keyEncryptedBase64Bytes))
+            {
+                string keyDecryptedKeyBase64 = null;
+                if (Aes256CBCKeyGenerator.TryGetDecryptedBase64(keyEncryptedBase64Bytes, out keyDecryptedKeyBase64))
+                {
+                    Trace.WriteLine("keyEncryptedBase64=" + keyEncryptedBase64);
+                    Trace.WriteLine("keyDecryptedKeyBase64=" + keyDecryptedKeyBase64);
+
+                    string decryptedKeyPlainText = ConvertUtility.Base64Decode(keyDecryptedKeyBase64);
+                    Trace.WriteLine("decryptedKeyPlainText=" + decryptedKeyPlainText);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 }
