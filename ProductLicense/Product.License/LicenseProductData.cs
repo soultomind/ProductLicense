@@ -13,7 +13,7 @@ namespace Product
 
         static LicenseProductData()
         {
-            DateTimeFormat = "yyyyMMdd";
+            DateTimeFormat = "yyyy-MM-dd";
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Product
             get; set;
         }
 
-        public string MacAddress
+        public string ExecMacAddress
         {
             get; set;
         }

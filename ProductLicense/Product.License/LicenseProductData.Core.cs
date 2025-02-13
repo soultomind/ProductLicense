@@ -98,7 +98,7 @@ namespace Product
                 string value = property.Split(PropertyKeyValueSplitChar)[1];
                 if (nameof(Ids).Equals(name))
                 {
-                    //p.Code = value;
+                    p.Ids = ConvertProductIdList(value);
                 }
                 else if (nameof(IssueDate).Equals(name))
                 {
@@ -124,9 +124,22 @@ namespace Product
                 {
                     p.OperationMode = (OperationMode)Enum.Parse(typeof(OperationMode), value);
                 }
-                else if (nameof(ExecMachineGuid).Equals(name))
+
+                else if (RuntimeEnvironmentSize.Equals(name))
+                {
+                    Toolkit.TraceWriteLine("RuntimeEnvironmentSize=" + value);
+                }
+                else if (nameof(RuntimeEnvironment).Equals(name))
+                {
+                    p.RuntimeEnvironment = (RuntimeEnvironment)Enum.Parse(typeof(RuntimeEnvironment), value);
+                }
+                else if (nameof(ExecMachineGuid).Equals(name) || "MachineGuid".Equals(name))
                 {
                     p.ExecMachineGuid = value;
+                }
+                else if (nameof(ExecMacAddress).Equals(name) || "MacAddress".Equals(name))
+                {
+                    p.ExecMacAddress = value;
                 }
             }
 
