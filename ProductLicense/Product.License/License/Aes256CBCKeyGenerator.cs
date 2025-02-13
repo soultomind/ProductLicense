@@ -135,15 +135,6 @@ namespace Product.License
                     if (i % 2 == 1 && i + 2 != keyBase64Bytes.Count)
                     {
                         byte first = keyBase64Bytes[i - 1], second = keyBase64Bytes[i];
-
-                        /*
-                        byte first = keyBase64Bytes[i - 1], second = keyBase64Bytes[i];
-                        string strHexAsCode = ConvertHexAsCode(first, second);
-                        string strDecAsCode = Convert.ToInt32(strHexAsCode, 16).ToString();
-                        int decAsCode = int.Parse(strDecAsCode);
-                        char keyChar = (char)decAsCode;
-                        */
-
                         char keyChar = ConvertChar(first, second);
                         builder.Append(keyChar);
                     }
@@ -161,9 +152,9 @@ namespace Product.License
         }
 
         #region IV
-        public static bool TryGetEncryptedIVBase64(string plainText, out string outBase64)
+        public static bool TryGetEncryptedIVBase64(string ivPlainText, out string outBase64)
         {
-            string base64 = ConvertUtility.Base64Encode(plainText);
+            string base64 = ConvertUtility.Base64Encode(ivPlainText);
             if (Aes256CBCCrypto.IsValidIVBase64(base64))
             {
                 outBase64 = base64;
@@ -174,17 +165,17 @@ namespace Product.License
             return false;
         }
 
-        public static bool TryGetEncryptedIVBase64(string plainText, out string outBase64, out IList<byte> ivBase64Bytes)
+        public static bool TryGetEncryptedIVBase64(string ivPlainText, out string outIVEncryptedBase64, out IList<byte> outIVBase64Bytes)
         {
-            if (TryGetEncryptedIVBase64(plainText, out outBase64))
+            if (TryGetEncryptedIVBase64(ivPlainText, out outIVEncryptedBase64))
             {
-                string base64 = outBase64;
-                ivBase64Bytes = new List<byte>();
-                AddBase64ConvertHexChar(base64, ivBase64Bytes);
+                string base64 = outIVEncryptedBase64;
+                outIVBase64Bytes = new List<byte>();
+                AddBase64ConvertHexChar(base64, outIVBase64Bytes);
                 return true;
             }
 
-            ivBase64Bytes = null;
+            outIVBase64Bytes = null;
             return false;
         }
         #endregion
@@ -203,17 +194,17 @@ namespace Product.License
             return false;
         }
 
-        public static bool TryGetEncryptedKeyBase64(string plainText, out string outBase64, out IList<byte> keyBase64Bytes)
+        public static bool TryGetEncryptedKeyBase64(string keyPlainText, out string outKeyEncryptedBase64, out IList<byte> outKeyBase64Bytes)
         {
-            if (TryGetEncryptedKeyBase64(plainText, out outBase64))
+            if (TryGetEncryptedKeyBase64(keyPlainText, out outKeyEncryptedBase64))
             {
-                string base64 = outBase64;
-                keyBase64Bytes = new List<byte>();
-                AddBase64ConvertHexChar(base64, keyBase64Bytes);
+                string base64 = outKeyEncryptedBase64;
+                outKeyBase64Bytes = new List<byte>();
+                AddBase64ConvertHexChar(base64, outKeyBase64Bytes);
                 return true;
             }
 
-            keyBase64Bytes = null;
+            outKeyBase64Bytes = null;
             return false;
         }
         #endregion
