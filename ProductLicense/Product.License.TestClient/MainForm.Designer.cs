@@ -31,10 +31,19 @@ namespace Product.License.TestClient
         {
             this.components = new System.ComponentModel.Container();
             this.groupBoxLicesneCrypto = new System.Windows.Forms.GroupBox();
+            this.labelAes256IVBase64 = new System.Windows.Forms.Label();
+            this.labelAes256KeyBase64 = new System.Windows.Forms.Label();
+            this.buttonAes256Base64Data = new System.Windows.Forms.Button();
+            this.richTextBoxAes256IVBase64 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxAes256KeyBase64 = new System.Windows.Forms.RichTextBox();
+            this.labelAes256IVText = new System.Windows.Forms.Label();
+            this.labelAes256KeyText = new System.Windows.Forms.Label();
+            this.richTextBoxAes256IVText = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxAes256KeyText = new System.Windows.Forms.RichTextBox();
             this.buttonGenerateLicenseProductDataPlainText = new System.Windows.Forms.Button();
             this.groupBoxCrypto = new System.Windows.Forms.GroupBox();
             this.buttonEncryptionPlainTextLicenseProductDataCreateFile = new System.Windows.Forms.Button();
-            this.labelResult = new System.Windows.Forms.Label();
+            this.labelLicenseProductDataResult = new System.Windows.Forms.Label();
             this.labelAfterPlainTextLicenseProductData = new System.Windows.Forms.Label();
             this.labelBeforePlainTextLicenseProductData = new System.Windows.Forms.Label();
             this.richTextBoxAfterPlainTextLicenseProductData = new System.Windows.Forms.RichTextBox();
@@ -79,15 +88,7 @@ namespace Product.License.TestClient
             this.richTextBoxConsole = new System.Windows.Forms.RichTextBox();
             this.contextMenuStripRichTextBoxConsole = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemClear = new System.Windows.Forms.ToolStripMenuItem();
-            this.richTextBoxAes256KeyText = new System.Windows.Forms.RichTextBox();
-            this.richTextBoxAes256IVText = new System.Windows.Forms.RichTextBox();
-            this.labelAes256KeyText = new System.Windows.Forms.Label();
-            this.labelAes256IVText = new System.Windows.Forms.Label();
-            this.richTextBoxAes256IVBase64 = new System.Windows.Forms.RichTextBox();
-            this.richTextBoxAes256KeyBase64 = new System.Windows.Forms.RichTextBox();
-            this.buttonAes256Base64Data = new System.Windows.Forms.Button();
-            this.labelAes256IVBase64 = new System.Windows.Forms.Label();
-            this.labelAes256KeyBase64 = new System.Windows.Forms.Label();
+            this.labelLicenseKeyAes256Result = new System.Windows.Forms.Label();
             this.groupBoxLicesneCrypto.SuspendLayout();
             this.groupBoxCrypto.SuspendLayout();
             this.groupBoxLicenseProductData.SuspendLayout();
@@ -97,6 +98,7 @@ namespace Product.License.TestClient
             // 
             // groupBoxLicesneCrypto
             // 
+            this.groupBoxLicesneCrypto.Controls.Add(this.labelLicenseKeyAes256Result);
             this.groupBoxLicesneCrypto.Controls.Add(this.labelAes256IVBase64);
             this.groupBoxLicesneCrypto.Controls.Add(this.labelAes256KeyBase64);
             this.groupBoxLicesneCrypto.Controls.Add(this.buttonAes256Base64Data);
@@ -114,14 +116,92 @@ namespace Product.License.TestClient
             this.groupBoxLicesneCrypto.Controls.Add(this.richTextBoxEncryptedtLicenseData);
             this.groupBoxLicesneCrypto.Location = new System.Drawing.Point(12, 12);
             this.groupBoxLicesneCrypto.Name = "groupBoxLicesneCrypto";
-            this.groupBoxLicesneCrypto.Size = new System.Drawing.Size(960, 606);
+            this.groupBoxLicesneCrypto.Size = new System.Drawing.Size(1060, 606);
             this.groupBoxLicesneCrypto.TabIndex = 0;
             this.groupBoxLicesneCrypto.TabStop = false;
             this.groupBoxLicesneCrypto.Text = "라이선스 암복호화";
             // 
+            // labelAes256IVBase64
+            // 
+            this.labelAes256IVBase64.AutoSize = true;
+            this.labelAes256IVBase64.Location = new System.Drawing.Point(780, 31);
+            this.labelAes256IVBase64.Name = "labelAes256IVBase64";
+            this.labelAes256IVBase64.Size = new System.Drawing.Size(104, 15);
+            this.labelAes256IVBase64.TabIndex = 61;
+            this.labelAes256IVBase64.Text = "Aes256 IV Base64";
+            // 
+            // labelAes256KeyBase64
+            // 
+            this.labelAes256KeyBase64.AutoSize = true;
+            this.labelAes256KeyBase64.Location = new System.Drawing.Point(780, 95);
+            this.labelAes256KeyBase64.Name = "labelAes256KeyBase64";
+            this.labelAes256KeyBase64.Size = new System.Drawing.Size(112, 15);
+            this.labelAes256KeyBase64.TabIndex = 60;
+            this.labelAes256KeyBase64.Text = "Aes256 Key Base64";
+            // 
+            // buttonAes256Base64Data
+            // 
+            this.buttonAes256Base64Data.Location = new System.Drawing.Point(742, 84);
+            this.buttonAes256Base64Data.Name = "buttonAes256Base64Data";
+            this.buttonAes256Base64Data.Size = new System.Drawing.Size(30, 30);
+            this.buttonAes256Base64Data.TabIndex = 59;
+            this.buttonAes256Base64Data.Text = "▶";
+            this.buttonAes256Base64Data.UseVisualStyleBackColor = true;
+            this.buttonAes256Base64Data.Click += new System.EventHandler(this.ButtonAes256Base64Data_Click);
+            // 
+            // richTextBoxAes256IVBase64
+            // 
+            this.richTextBoxAes256IVBase64.Location = new System.Drawing.Point(783, 49);
+            this.richTextBoxAes256IVBase64.Name = "richTextBoxAes256IVBase64";
+            this.richTextBoxAes256IVBase64.Size = new System.Drawing.Size(266, 37);
+            this.richTextBoxAes256IVBase64.TabIndex = 58;
+            this.richTextBoxAes256IVBase64.Text = "";
+            // 
+            // richTextBoxAes256KeyBase64
+            // 
+            this.richTextBoxAes256KeyBase64.Location = new System.Drawing.Point(783, 113);
+            this.richTextBoxAes256KeyBase64.Name = "richTextBoxAes256KeyBase64";
+            this.richTextBoxAes256KeyBase64.Size = new System.Drawing.Size(266, 37);
+            this.richTextBoxAes256KeyBase64.TabIndex = 57;
+            this.richTextBoxAes256KeyBase64.Text = "";
+            // 
+            // labelAes256IVText
+            // 
+            this.labelAes256IVText.AutoSize = true;
+            this.labelAes256IVText.Location = new System.Drawing.Point(496, 31);
+            this.labelAes256IVText.Name = "labelAes256IVText";
+            this.labelAes256IVText.Size = new System.Drawing.Size(88, 15);
+            this.labelAes256IVText.TabIndex = 56;
+            this.labelAes256IVText.Text = "Aes256 IV Text";
+            // 
+            // labelAes256KeyText
+            // 
+            this.labelAes256KeyText.AutoSize = true;
+            this.labelAes256KeyText.Location = new System.Drawing.Point(496, 95);
+            this.labelAes256KeyText.Name = "labelAes256KeyText";
+            this.labelAes256KeyText.Size = new System.Drawing.Size(96, 15);
+            this.labelAes256KeyText.TabIndex = 55;
+            this.labelAes256KeyText.Text = "Aes256 Key Text";
+            // 
+            // richTextBoxAes256IVText
+            // 
+            this.richTextBoxAes256IVText.Location = new System.Drawing.Point(499, 49);
+            this.richTextBoxAes256IVText.Name = "richTextBoxAes256IVText";
+            this.richTextBoxAes256IVText.Size = new System.Drawing.Size(208, 37);
+            this.richTextBoxAes256IVText.TabIndex = 54;
+            this.richTextBoxAes256IVText.Text = "Hancominnostream";
+            // 
+            // richTextBoxAes256KeyText
+            // 
+            this.richTextBoxAes256KeyText.Location = new System.Drawing.Point(499, 113);
+            this.richTextBoxAes256KeyText.Name = "richTextBoxAes256KeyText";
+            this.richTextBoxAes256KeyText.Size = new System.Drawing.Size(208, 37);
+            this.richTextBoxAes256KeyText.TabIndex = 47;
+            this.richTextBoxAes256KeyText.Text = "Copyright C Hancom innostream.";
+            // 
             // buttonGenerateLicenseProductDataPlainText
             // 
-            this.buttonGenerateLicenseProductDataPlainText.Location = new System.Drawing.Point(450, 211);
+            this.buttonGenerateLicenseProductDataPlainText.Location = new System.Drawing.Point(450, 224);
             this.buttonGenerateLicenseProductDataPlainText.Name = "buttonGenerateLicenseProductDataPlainText";
             this.buttonGenerateLicenseProductDataPlainText.Size = new System.Drawing.Size(30, 30);
             this.buttonGenerateLicenseProductDataPlainText.TabIndex = 53;
@@ -132,7 +212,7 @@ namespace Product.License.TestClient
             // groupBoxCrypto
             // 
             this.groupBoxCrypto.Controls.Add(this.buttonEncryptionPlainTextLicenseProductDataCreateFile);
-            this.groupBoxCrypto.Controls.Add(this.labelResult);
+            this.groupBoxCrypto.Controls.Add(this.labelLicenseProductDataResult);
             this.groupBoxCrypto.Controls.Add(this.labelAfterPlainTextLicenseProductData);
             this.groupBoxCrypto.Controls.Add(this.labelBeforePlainTextLicenseProductData);
             this.groupBoxCrypto.Controls.Add(this.richTextBoxAfterPlainTextLicenseProductData);
@@ -143,14 +223,14 @@ namespace Product.License.TestClient
             this.groupBoxCrypto.Controls.Add(this.richTextBoxEnryptionPlainTextLicenseProductData);
             this.groupBoxCrypto.Location = new System.Drawing.Point(499, 183);
             this.groupBoxCrypto.Name = "groupBoxCrypto";
-            this.groupBoxCrypto.Size = new System.Drawing.Size(443, 410);
+            this.groupBoxCrypto.Size = new System.Drawing.Size(550, 410);
             this.groupBoxCrypto.TabIndex = 52;
             this.groupBoxCrypto.TabStop = false;
             this.groupBoxCrypto.Text = "LicenseProductData Crypto";
             // 
             // buttonEncryptionPlainTextLicenseProductDataCreateFile
             // 
-            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Location = new System.Drawing.Point(272, 123);
+            this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Location = new System.Drawing.Point(386, 123);
             this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Name = "buttonEncryptionPlainTextLicenseProductDataCreateFile";
             this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Size = new System.Drawing.Size(149, 23);
             this.buttonEncryptionPlainTextLicenseProductDataCreateFile.TabIndex = 17;
@@ -158,13 +238,13 @@ namespace Product.License.TestClient
             this.buttonEncryptionPlainTextLicenseProductDataCreateFile.UseVisualStyleBackColor = true;
             this.buttonEncryptionPlainTextLicenseProductDataCreateFile.Click += new System.EventHandler(this.ButtonEncryptionPlainTextLicenseProductDataCreateFile_Click);
             // 
-            // labelResult
+            // labelLicenseProductDataResult
             // 
-            this.labelResult.AutoSize = true;
-            this.labelResult.Location = new System.Drawing.Point(18, 382);
-            this.labelResult.Name = "labelResult";
-            this.labelResult.Size = new System.Drawing.Size(0, 15);
-            this.labelResult.TabIndex = 16;
+            this.labelLicenseProductDataResult.AutoSize = true;
+            this.labelLicenseProductDataResult.Location = new System.Drawing.Point(18, 382);
+            this.labelLicenseProductDataResult.Name = "labelLicenseProductDataResult";
+            this.labelLicenseProductDataResult.Size = new System.Drawing.Size(0, 15);
+            this.labelLicenseProductDataResult.TabIndex = 16;
             // 
             // labelAfterPlainTextLicenseProductData
             // 
@@ -189,7 +269,7 @@ namespace Product.License.TestClient
             this.richTextBoxAfterPlainTextLicenseProductData.BackColor = System.Drawing.Color.White;
             this.richTextBoxAfterPlainTextLicenseProductData.Location = new System.Drawing.Point(21, 299);
             this.richTextBoxAfterPlainTextLicenseProductData.Name = "richTextBoxAfterPlainTextLicenseProductData";
-            this.richTextBoxAfterPlainTextLicenseProductData.Size = new System.Drawing.Size(400, 70);
+            this.richTextBoxAfterPlainTextLicenseProductData.Size = new System.Drawing.Size(514, 70);
             this.richTextBoxAfterPlainTextLicenseProductData.TabIndex = 12;
             this.richTextBoxAfterPlainTextLicenseProductData.Text = "";
             // 
@@ -217,7 +297,7 @@ namespace Product.License.TestClient
             this.richTextBoxBeforePlainTextLicenseProductData.BackColor = System.Drawing.Color.White;
             this.richTextBoxBeforePlainTextLicenseProductData.Location = new System.Drawing.Point(21, 46);
             this.richTextBoxBeforePlainTextLicenseProductData.Name = "richTextBoxBeforePlainTextLicenseProductData";
-            this.richTextBoxBeforePlainTextLicenseProductData.Size = new System.Drawing.Size(400, 70);
+            this.richTextBoxBeforePlainTextLicenseProductData.Size = new System.Drawing.Size(514, 70);
             this.richTextBoxBeforePlainTextLicenseProductData.TabIndex = 9;
             this.richTextBoxBeforePlainTextLicenseProductData.Text = "";
             // 
@@ -236,13 +316,13 @@ namespace Product.License.TestClient
             this.richTextBoxEnryptionPlainTextLicenseProductData.BackColor = System.Drawing.Color.White;
             this.richTextBoxEnryptionPlainTextLicenseProductData.Location = new System.Drawing.Point(21, 170);
             this.richTextBoxEnryptionPlainTextLicenseProductData.Name = "richTextBoxEnryptionPlainTextLicenseProductData";
-            this.richTextBoxEnryptionPlainTextLicenseProductData.Size = new System.Drawing.Size(400, 70);
+            this.richTextBoxEnryptionPlainTextLicenseProductData.Size = new System.Drawing.Size(514, 70);
             this.richTextBoxEnryptionPlainTextLicenseProductData.TabIndex = 11;
             this.richTextBoxEnryptionPlainTextLicenseProductData.Text = "";
             // 
             // buttonDecryptLicenseProductData
             // 
-            this.buttonDecryptLicenseProductData.Location = new System.Drawing.Point(73, 138);
+            this.buttonDecryptLicenseProductData.Location = new System.Drawing.Point(74, 220);
             this.buttonDecryptLicenseProductData.Name = "buttonDecryptLicenseProductData";
             this.buttonDecryptLicenseProductData.Size = new System.Drawing.Size(30, 30);
             this.buttonDecryptLicenseProductData.TabIndex = 45;
@@ -271,9 +351,9 @@ namespace Product.License.TestClient
             this.groupBoxLicenseProductData.Controls.Add(this.textBoxOperationMode);
             this.groupBoxLicenseProductData.Controls.Add(this.labelIssueDate);
             this.groupBoxLicenseProductData.Controls.Add(this.labelProductIds);
-            this.groupBoxLicenseProductData.Location = new System.Drawing.Point(28, 183);
+            this.groupBoxLicenseProductData.Location = new System.Drawing.Point(28, 254);
             this.groupBoxLicenseProductData.Name = "groupBoxLicenseProductData";
-            this.groupBoxLicenseProductData.Size = new System.Drawing.Size(401, 410);
+            this.groupBoxLicenseProductData.Size = new System.Drawing.Size(401, 339);
             this.groupBoxLicenseProductData.TabIndex = 44;
             this.groupBoxLicenseProductData.TabStop = false;
             this.groupBoxLicenseProductData.Text = "LicenseProductData";
@@ -281,7 +361,7 @@ namespace Product.License.TestClient
             // labelInputDescription
             // 
             this.labelInputDescription.AutoSize = true;
-            this.labelInputDescription.Location = new System.Drawing.Point(140, 70);
+            this.labelInputDescription.Location = new System.Drawing.Point(144, 70);
             this.labelInputDescription.Name = "labelInputDescription";
             this.labelInputDescription.Size = new System.Drawing.Size(159, 15);
             this.labelInputDescription.TabIndex = 46;
@@ -289,7 +369,7 @@ namespace Product.License.TestClient
             // 
             // textBoxRuntimeEnvironment
             // 
-            this.textBoxRuntimeEnvironment.Location = new System.Drawing.Point(160, 33);
+            this.textBoxRuntimeEnvironment.Location = new System.Drawing.Point(164, 33);
             this.textBoxRuntimeEnvironment.Name = "textBoxRuntimeEnvironment";
             this.textBoxRuntimeEnvironment.Size = new System.Drawing.Size(183, 23);
             this.textBoxRuntimeEnvironment.TabIndex = 45;
@@ -299,7 +379,7 @@ namespace Product.License.TestClient
             // 
             this.labelRuntimeEnvironment.AutoSize = true;
             this.labelRuntimeEnvironment.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelRuntimeEnvironment.Location = new System.Drawing.Point(28, 36);
+            this.labelRuntimeEnvironment.Location = new System.Drawing.Point(32, 36);
             this.labelRuntimeEnvironment.Name = "labelRuntimeEnvironment";
             this.labelRuntimeEnvironment.Size = new System.Drawing.Size(126, 15);
             this.labelRuntimeEnvironment.TabIndex = 44;
@@ -309,7 +389,7 @@ namespace Product.License.TestClient
             // 
             this.labelExecKeyValuePairs.AutoSize = true;
             this.labelExecKeyValuePairs.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelExecKeyValuePairs.Location = new System.Drawing.Point(28, 94);
+            this.labelExecKeyValuePairs.Location = new System.Drawing.Point(32, 94);
             this.labelExecKeyValuePairs.Name = "labelExecKeyValuePairs";
             this.labelExecKeyValuePairs.Size = new System.Drawing.Size(88, 15);
             this.labelExecKeyValuePairs.TabIndex = 43;
@@ -317,7 +397,7 @@ namespace Product.License.TestClient
             // 
             // textBoxProductIds
             // 
-            this.textBoxProductIds.Location = new System.Drawing.Point(143, 120);
+            this.textBoxProductIds.Location = new System.Drawing.Point(147, 120);
             this.textBoxProductIds.Name = "textBoxProductIds";
             this.textBoxProductIds.Size = new System.Drawing.Size(200, 23);
             this.textBoxProductIds.TabIndex = 28;
@@ -325,14 +405,14 @@ namespace Product.License.TestClient
             // 
             // textBoxExecKeyValuePairs
             // 
-            this.textBoxExecKeyValuePairs.Location = new System.Drawing.Point(143, 91);
+            this.textBoxExecKeyValuePairs.Location = new System.Drawing.Point(147, 91);
             this.textBoxExecKeyValuePairs.Name = "textBoxExecKeyValuePairs";
             this.textBoxExecKeyValuePairs.Size = new System.Drawing.Size(200, 23);
             this.textBoxExecKeyValuePairs.TabIndex = 42;
             // 
             // dateTimePickerIssueDate
             // 
-            this.dateTimePickerIssueDate.Location = new System.Drawing.Point(143, 149);
+            this.dateTimePickerIssueDate.Location = new System.Drawing.Point(147, 149);
             this.dateTimePickerIssueDate.Name = "dateTimePickerIssueDate";
             this.dateTimePickerIssueDate.Size = new System.Drawing.Size(200, 23);
             this.dateTimePickerIssueDate.TabIndex = 29;
@@ -342,7 +422,7 @@ namespace Product.License.TestClient
             // 
             this.labelOperationMode.AutoSize = true;
             this.labelOperationMode.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelOperationMode.Location = new System.Drawing.Point(28, 297);
+            this.labelOperationMode.Location = new System.Drawing.Point(32, 297);
             this.labelOperationMode.Name = "labelOperationMode";
             this.labelOperationMode.Size = new System.Drawing.Size(99, 15);
             this.labelOperationMode.TabIndex = 41;
@@ -350,7 +430,7 @@ namespace Product.License.TestClient
             // 
             // dateTimePickerExpireDate
             // 
-            this.dateTimePickerExpireDate.Location = new System.Drawing.Point(143, 178);
+            this.dateTimePickerExpireDate.Location = new System.Drawing.Point(147, 178);
             this.dateTimePickerExpireDate.Name = "dateTimePickerExpireDate";
             this.dateTimePickerExpireDate.Size = new System.Drawing.Size(200, 23);
             this.dateTimePickerExpireDate.TabIndex = 30;
@@ -360,7 +440,7 @@ namespace Product.License.TestClient
             // 
             this.labelProjectName.AutoSize = true;
             this.labelProjectName.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelProjectName.Location = new System.Drawing.Point(28, 268);
+            this.labelProjectName.Location = new System.Drawing.Point(32, 268);
             this.labelProjectName.Name = "labelProjectName";
             this.labelProjectName.Size = new System.Drawing.Size(82, 15);
             this.labelProjectName.TabIndex = 40;
@@ -368,7 +448,7 @@ namespace Product.License.TestClient
             // 
             // textBoxLicenseNo
             // 
-            this.textBoxLicenseNo.Location = new System.Drawing.Point(143, 207);
+            this.textBoxLicenseNo.Location = new System.Drawing.Point(147, 207);
             this.textBoxLicenseNo.Name = "textBoxLicenseNo";
             this.textBoxLicenseNo.Size = new System.Drawing.Size(200, 23);
             this.textBoxLicenseNo.TabIndex = 31;
@@ -378,7 +458,7 @@ namespace Product.License.TestClient
             // 
             this.labelCustomerName.AutoSize = true;
             this.labelCustomerName.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelCustomerName.Location = new System.Drawing.Point(28, 239);
+            this.labelCustomerName.Location = new System.Drawing.Point(32, 239);
             this.labelCustomerName.Name = "labelCustomerName";
             this.labelCustomerName.Size = new System.Drawing.Size(98, 15);
             this.labelCustomerName.TabIndex = 39;
@@ -386,7 +466,7 @@ namespace Product.License.TestClient
             // 
             // textBoxCustomerName
             // 
-            this.textBoxCustomerName.Location = new System.Drawing.Point(143, 236);
+            this.textBoxCustomerName.Location = new System.Drawing.Point(147, 236);
             this.textBoxCustomerName.Name = "textBoxCustomerName";
             this.textBoxCustomerName.Size = new System.Drawing.Size(200, 23);
             this.textBoxCustomerName.TabIndex = 32;
@@ -396,7 +476,7 @@ namespace Product.License.TestClient
             // 
             this.labelLicenseNo.AutoSize = true;
             this.labelLicenseNo.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelLicenseNo.Location = new System.Drawing.Point(28, 210);
+            this.labelLicenseNo.Location = new System.Drawing.Point(32, 210);
             this.labelLicenseNo.Name = "labelLicenseNo";
             this.labelLicenseNo.Size = new System.Drawing.Size(66, 15);
             this.labelLicenseNo.TabIndex = 38;
@@ -404,7 +484,7 @@ namespace Product.License.TestClient
             // 
             // textBoxProjectName
             // 
-            this.textBoxProjectName.Location = new System.Drawing.Point(143, 265);
+            this.textBoxProjectName.Location = new System.Drawing.Point(147, 265);
             this.textBoxProjectName.Name = "textBoxProjectName";
             this.textBoxProjectName.Size = new System.Drawing.Size(200, 23);
             this.textBoxProjectName.TabIndex = 33;
@@ -414,7 +494,7 @@ namespace Product.License.TestClient
             // 
             this.labelExpireDate.AutoSize = true;
             this.labelExpireDate.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelExpireDate.Location = new System.Drawing.Point(28, 184);
+            this.labelExpireDate.Location = new System.Drawing.Point(32, 184);
             this.labelExpireDate.Name = "labelExpireDate";
             this.labelExpireDate.Size = new System.Drawing.Size(70, 15);
             this.labelExpireDate.TabIndex = 37;
@@ -422,7 +502,7 @@ namespace Product.License.TestClient
             // 
             // textBoxOperationMode
             // 
-            this.textBoxOperationMode.Location = new System.Drawing.Point(143, 294);
+            this.textBoxOperationMode.Location = new System.Drawing.Point(147, 294);
             this.textBoxOperationMode.Name = "textBoxOperationMode";
             this.textBoxOperationMode.Size = new System.Drawing.Size(200, 23);
             this.textBoxOperationMode.TabIndex = 34;
@@ -432,7 +512,7 @@ namespace Product.License.TestClient
             // 
             this.labelIssueDate.AutoSize = true;
             this.labelIssueDate.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelIssueDate.Location = new System.Drawing.Point(28, 155);
+            this.labelIssueDate.Location = new System.Drawing.Point(32, 155);
             this.labelIssueDate.Name = "labelIssueDate";
             this.labelIssueDate.Size = new System.Drawing.Size(65, 15);
             this.labelIssueDate.TabIndex = 36;
@@ -442,7 +522,7 @@ namespace Product.License.TestClient
             // 
             this.labelProductIds.AutoSize = true;
             this.labelProductIds.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelProductIds.Location = new System.Drawing.Point(28, 123);
+            this.labelProductIds.Location = new System.Drawing.Point(32, 123);
             this.labelProductIds.Name = "labelProductIds";
             this.labelProductIds.Size = new System.Drawing.Size(74, 15);
             this.labelProductIds.TabIndex = 35;
@@ -451,7 +531,7 @@ namespace Product.License.TestClient
             // labelEncryptedLicenseData
             // 
             this.labelEncryptedLicenseData.AutoSize = true;
-            this.labelEncryptedLicenseData.Location = new System.Drawing.Point(26, 39);
+            this.labelEncryptedLicenseData.Location = new System.Drawing.Point(25, 132);
             this.labelEncryptedLicenseData.Name = "labelEncryptedLicenseData";
             this.labelEncryptedLicenseData.Size = new System.Drawing.Size(147, 15);
             this.labelEncryptedLicenseData.TabIndex = 26;
@@ -460,7 +540,7 @@ namespace Product.License.TestClient
             // richTextBoxEncryptedtLicenseData
             // 
             this.richTextBoxEncryptedtLicenseData.BackColor = System.Drawing.Color.White;
-            this.richTextBoxEncryptedtLicenseData.Location = new System.Drawing.Point(29, 60);
+            this.richTextBoxEncryptedtLicenseData.Location = new System.Drawing.Point(28, 150);
             this.richTextBoxEncryptedtLicenseData.Name = "richTextBoxEncryptedtLicenseData";
             this.richTextBoxEncryptedtLicenseData.Size = new System.Drawing.Size(400, 65);
             this.richTextBoxEncryptedtLicenseData.TabIndex = 25;
@@ -480,7 +560,7 @@ namespace Product.License.TestClient
             this.groupBoxTest.Controls.Add(this.richTextBoxConsole);
             this.groupBoxTest.Location = new System.Drawing.Point(12, 624);
             this.groupBoxTest.Name = "groupBoxTest";
-            this.groupBoxTest.Size = new System.Drawing.Size(960, 325);
+            this.groupBoxTest.Size = new System.Drawing.Size(1060, 325);
             this.groupBoxTest.TabIndex = 1;
             this.groupBoxTest.TabStop = false;
             this.groupBoxTest.Text = "테스트";
@@ -489,7 +569,7 @@ namespace Product.License.TestClient
             // 
             this.textBoxWmiQuery.Location = new System.Drawing.Point(499, 79);
             this.textBoxWmiQuery.Name = "textBoxWmiQuery";
-            this.textBoxWmiQuery.Size = new System.Drawing.Size(453, 23);
+            this.textBoxWmiQuery.Size = new System.Drawing.Size(550, 23);
             this.textBoxWmiQuery.TabIndex = 18;
             // 
             // labelWmiQuery
@@ -522,7 +602,7 @@ namespace Product.License.TestClient
             "SELECT UUID FROM Win32_ComputerSystemProduct"});
             this.comboBoxWmiQueryItem.Location = new System.Drawing.Point(499, 49);
             this.comboBoxWmiQueryItem.Name = "comboBoxWmiQueryItem";
-            this.comboBoxWmiQueryItem.Size = new System.Drawing.Size(453, 23);
+            this.comboBoxWmiQueryItem.Size = new System.Drawing.Size(550, 23);
             this.comboBoxWmiQueryItem.TabIndex = 15;
             this.comboBoxWmiQueryItem.SelectedIndexChanged += new System.EventHandler(this.ComboBoxWmiQueryItem_SelectedIndexChanged);
             // 
@@ -530,7 +610,7 @@ namespace Product.License.TestClient
             // 
             this.labelWmiNamespace.AutoSize = true;
             this.labelWmiNamespace.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelWmiNamespace.Location = new System.Drawing.Point(768, 25);
+            this.labelWmiNamespace.Location = new System.Drawing.Point(866, 27);
             this.labelWmiNamespace.Name = "labelWmiNamespace";
             this.labelWmiNamespace.Size = new System.Drawing.Size(76, 15);
             this.labelWmiNamespace.TabIndex = 14;
@@ -538,7 +618,7 @@ namespace Product.License.TestClient
             // 
             // textBoxWmiNamespace
             // 
-            this.textBoxWmiNamespace.Location = new System.Drawing.Point(852, 22);
+            this.textBoxWmiNamespace.Location = new System.Drawing.Point(949, 21);
             this.textBoxWmiNamespace.Name = "textBoxWmiNamespace";
             this.textBoxWmiNamespace.Size = new System.Drawing.Size(100, 23);
             this.textBoxWmiNamespace.TabIndex = 13;
@@ -567,7 +647,7 @@ namespace Product.License.TestClient
             // linkLabelWmi
             // 
             this.linkLabelWmi.AutoSize = true;
-            this.linkLabelWmi.Location = new System.Drawing.Point(401, 291);
+            this.linkLabelWmi.Location = new System.Drawing.Point(496, 282);
             this.linkLabelWmi.Name = "linkLabelWmi";
             this.linkLabelWmi.Size = new System.Drawing.Size(553, 15);
             this.linkLabelWmi.TabIndex = 5;
@@ -581,7 +661,7 @@ namespace Product.License.TestClient
             this.richTextBoxConsole.ContextMenuStrip = this.contextMenuStripRichTextBoxConsole;
             this.richTextBoxConsole.Location = new System.Drawing.Point(6, 108);
             this.richTextBoxConsole.Name = "richTextBoxConsole";
-            this.richTextBoxConsole.Size = new System.Drawing.Size(948, 180);
+            this.richTextBoxConsole.Size = new System.Drawing.Size(1048, 180);
             this.richTextBoxConsole.TabIndex = 2;
             this.richTextBoxConsole.Text = "";
             // 
@@ -599,89 +679,19 @@ namespace Product.License.TestClient
             this.ToolStripMenuItemClear.Text = "Clear";
             this.ToolStripMenuItemClear.Click += new System.EventHandler(this.RichTextBoxConsoleToolStripMenuItemClear_Click);
             // 
-            // richTextBoxAes256KeyText
+            // labelLicenseKeyAes256Result
             // 
-            this.richTextBoxAes256KeyText.Location = new System.Drawing.Point(520, 113);
-            this.richTextBoxAes256KeyText.Name = "richTextBoxAes256KeyText";
-            this.richTextBoxAes256KeyText.Size = new System.Drawing.Size(148, 37);
-            this.richTextBoxAes256KeyText.TabIndex = 47;
-            this.richTextBoxAes256KeyText.Text = "Copyright C Hancom innostream.";
-            // 
-            // richTextBoxAes256IVText
-            // 
-            this.richTextBoxAes256IVText.Location = new System.Drawing.Point(520, 49);
-            this.richTextBoxAes256IVText.Name = "richTextBoxAes256IVText";
-            this.richTextBoxAes256IVText.Size = new System.Drawing.Size(148, 37);
-            this.richTextBoxAes256IVText.TabIndex = 54;
-            this.richTextBoxAes256IVText.Text = "Hancominnostream";
-            // 
-            // labelAes256KeyText
-            // 
-            this.labelAes256KeyText.AutoSize = true;
-            this.labelAes256KeyText.Location = new System.Drawing.Point(517, 95);
-            this.labelAes256KeyText.Name = "labelAes256KeyText";
-            this.labelAes256KeyText.Size = new System.Drawing.Size(96, 15);
-            this.labelAes256KeyText.TabIndex = 55;
-            this.labelAes256KeyText.Text = "Aes256 Key Text";
-            // 
-            // labelAes256IVText
-            // 
-            this.labelAes256IVText.AutoSize = true;
-            this.labelAes256IVText.Location = new System.Drawing.Point(517, 31);
-            this.labelAes256IVText.Name = "labelAes256IVText";
-            this.labelAes256IVText.Size = new System.Drawing.Size(88, 15);
-            this.labelAes256IVText.TabIndex = 56;
-            this.labelAes256IVText.Text = "Aes256 IV Text";
-            // 
-            // richTextBoxAes256IVBase64
-            // 
-            this.richTextBoxAes256IVBase64.Location = new System.Drawing.Point(772, 49);
-            this.richTextBoxAes256IVBase64.Name = "richTextBoxAes256IVBase64";
-            this.richTextBoxAes256IVBase64.Size = new System.Drawing.Size(148, 37);
-            this.richTextBoxAes256IVBase64.TabIndex = 58;
-            this.richTextBoxAes256IVBase64.Text = "";
-            // 
-            // richTextBoxAes256KeyBase64
-            // 
-            this.richTextBoxAes256KeyBase64.Location = new System.Drawing.Point(772, 113);
-            this.richTextBoxAes256KeyBase64.Name = "richTextBoxAes256KeyBase64";
-            this.richTextBoxAes256KeyBase64.Size = new System.Drawing.Size(148, 37);
-            this.richTextBoxAes256KeyBase64.TabIndex = 57;
-            this.richTextBoxAes256KeyBase64.Text = "";
-            // 
-            // buttonAes256Base64Data
-            // 
-            this.buttonAes256Base64Data.Location = new System.Drawing.Point(707, 83);
-            this.buttonAes256Base64Data.Name = "buttonAes256Base64Data";
-            this.buttonAes256Base64Data.Size = new System.Drawing.Size(30, 30);
-            this.buttonAes256Base64Data.TabIndex = 59;
-            this.buttonAes256Base64Data.Text = "▶";
-            this.buttonAes256Base64Data.UseVisualStyleBackColor = true;
-            this.buttonAes256Base64Data.Click += new System.EventHandler(this.ButtonAes256Base64Data_Click);
-            // 
-            // labelAes256IVBase64
-            // 
-            this.labelAes256IVBase64.AutoSize = true;
-            this.labelAes256IVBase64.Location = new System.Drawing.Point(769, 31);
-            this.labelAes256IVBase64.Name = "labelAes256IVBase64";
-            this.labelAes256IVBase64.Size = new System.Drawing.Size(104, 15);
-            this.labelAes256IVBase64.TabIndex = 61;
-            this.labelAes256IVBase64.Text = "Aes256 IV Base64";
-            // 
-            // labelAes256KeyBase64
-            // 
-            this.labelAes256KeyBase64.AutoSize = true;
-            this.labelAes256KeyBase64.Location = new System.Drawing.Point(769, 95);
-            this.labelAes256KeyBase64.Name = "labelAes256KeyBase64";
-            this.labelAes256KeyBase64.Size = new System.Drawing.Size(112, 15);
-            this.labelAes256KeyBase64.TabIndex = 60;
-            this.labelAes256KeyBase64.Text = "Aes256 Key Base64";
+            this.labelLicenseKeyAes256Result.AutoSize = true;
+            this.labelLicenseKeyAes256Result.Location = new System.Drawing.Point(769, 159);
+            this.labelLicenseKeyAes256Result.Name = "labelLicenseKeyAes256Result";
+            this.labelLicenseKeyAes256Result.Size = new System.Drawing.Size(0, 15);
+            this.labelLicenseKeyAes256Result.TabIndex = 18;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 961);
+            this.ClientSize = new System.Drawing.Size(1084, 961);
             this.Controls.Add(this.groupBoxTest);
             this.Controls.Add(this.groupBoxLicesneCrypto);
             this.Font = new System.Drawing.Font("맑은 고딕", 9F);
@@ -753,7 +763,7 @@ namespace Product.License.TestClient
         private System.Windows.Forms.Label labelRuntimeEnvironment;
         private System.Windows.Forms.TextBox textBoxRuntimeEnvironment;
         private System.Windows.Forms.Label labelInputDescription;
-        private System.Windows.Forms.Label labelResult;
+        private System.Windows.Forms.Label labelLicenseProductDataResult;
         private System.Windows.Forms.Button buttonEncryptionPlainTextLicenseProductDataCreateFile;
         private System.Windows.Forms.Label labelAes256IVBase64;
         private System.Windows.Forms.Label labelAes256KeyBase64;
@@ -764,6 +774,7 @@ namespace Product.License.TestClient
         private System.Windows.Forms.Label labelAes256KeyText;
         private System.Windows.Forms.RichTextBox richTextBoxAes256IVText;
         private System.Windows.Forms.RichTextBox richTextBoxAes256KeyText;
+        private System.Windows.Forms.Label labelLicenseKeyAes256Result;
     }
 }
 

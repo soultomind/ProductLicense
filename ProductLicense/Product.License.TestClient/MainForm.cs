@@ -77,7 +77,7 @@ namespace Product.License.TestClient
         private void ButtonDecryptLicenseProductData_Click(object sender, EventArgs e)
         {
             string encryptedText = richTextBoxEncryptedtLicenseData.Text;
-            string plainText = new Aes256CBCCrypto().Decrypt(encryptedText);
+            string plainText = Crypto.Decrypt(encryptedText);
 
             LicenseProductData licenseProductData = LicenseProductData.Parse(plainText);
             if (licenseProductData != null)
@@ -157,23 +157,23 @@ namespace Product.License.TestClient
             string decryptedText = Crypto.Decrypt(encryptedText);
             AfterPlainTextLicenseProductData = decryptedText;
 
-            await SetLabelResultTextAsync();
+            await SetLabelLicenseProductDataResultTextAsync();
         }
 
-        private async Task SetLabelResultTextAsync()
+        private async Task SetLabelLicenseProductDataResultTextAsync()
         {
             await Task.Delay(1000);
             if (BeforePlainTextLicenseProductData.Equals(AfterPlainTextLicenseProductData))
             {
-                labelResult.Text = "결과 : 성공";
+                labelLicenseProductDataResult.Text = "결과 : 성공";
             }
             else
             {
-                labelResult.Text = "결과 : 실패";
+                labelLicenseProductDataResult.Text = "결과 : 실패";
             }
 
             await Task.Delay(3000);
-            labelResult.Text = "";
+            labelLicenseProductDataResult.Text = "";
         }
 
         #endregion
@@ -313,15 +313,16 @@ namespace Product.License.TestClient
 
         #endregion
 
-        private void ButtonAes256Base64Data_Click(object sender, EventArgs e)
+        private async void ButtonAes256Base64Data_Click(object sender, EventArgs e)
         {
             string ivPlainText = richTextBoxAes256IVText.Text;
             string ivEncryptedBase64 = null;
+            string ivDecryptedKeyBase64 = null;
             IList<byte> ivEncryptedBase64Bytes = null;
 
+            bool iv = false, key = false;
             if (Aes256CBCKeyGenerator.TryGetEncryptedIVBase64(ivPlainText, out ivEncryptedBase64, out ivEncryptedBase64Bytes))
             {
-                string ivDecryptedKeyBase64 = null;
                 if (Aes256CBCKeyGenerator.TryGetDecryptedBase64(ivEncryptedBase64Bytes, out ivDecryptedKeyBase64))
                 {
                     Trace.WriteLine("ivEncryptedBase64=" + ivEncryptedBase64);
@@ -329,6 +330,11 @@ namespace Product.License.TestClient
 
                     string decryptedIvPlainText = ConvertUtility.Base64Decode(ivDecryptedKeyBase64);
                     Trace.WriteLine("decryptedIvPlainText=" + decryptedIvPlainText);
+
+                    if (ivPlainText.Equals(decryptedIvPlainText))
+                    {
+                        iv = true;
+                    }
                 }
                 else
                 {
@@ -342,10 +348,10 @@ namespace Product.License.TestClient
 
             string keyPlainText = richTextBoxAes256KeyText.Text;
             string keyEncryptedBase64 = null;
+            string keyDecryptedKeyBase64 = null;
             IList<byte> keyEncryptedBase64Bytes = null;
             if (Aes256CBCKeyGenerator.TryGetEncryptedKeyBase64(keyPlainText, out keyEncryptedBase64, out keyEncryptedBase64Bytes))
             {
-                string keyDecryptedKeyBase64 = null;
                 if (Aes256CBCKeyGenerator.TryGetDecryptedBase64(keyEncryptedBase64Bytes, out keyDecryptedKeyBase64))
                 {
                     Trace.WriteLine("keyEncryptedBase64=" + keyEncryptedBase64);
@@ -353,6 +359,11 @@ namespace Product.License.TestClient
 
                     string decryptedKeyPlainText = ConvertUtility.Base64Decode(keyDecryptedKeyBase64);
                     Trace.WriteLine("decryptedKeyPlainText=" + decryptedKeyPlainText);
+
+                    if (keyPlainText.Equals(decryptedKeyPlainText))
+                    {
+                        key = true;
+                    }
                 }
                 else
                 {
@@ -363,6 +374,33 @@ namespace Product.License.TestClient
             {
                 return;
             }
+
+            bool result = iv && key;
+            if (result)
+            {
+                //ivEncryptedBase64
+                //keyEncryptedBase64
+
+                richTextBoxAes256IVBase64.Text = ivEncryptedBase64;
+                richTextBoxAes256KeyBase64.Text = keyEncryptedBase64;
+            }
+            await SetLabelLicenseKeyAes256ResultTextAsync(result);
+        }
+
+        private async Task SetLabelLicenseKeyAes256ResultTextAsync(bool result)
+        {
+            await Task.Delay(1000);
+
+            if (result)
+            {
+                labelLicenseKeyAes256Result.Text = "결과 : 성공";
+            }
+            else
+            {
+                labelLicenseKeyAes256Result.Text = "결과 : 실패";
+            }
+
+            await Task.Delay(3000);
         }
     }
 }
