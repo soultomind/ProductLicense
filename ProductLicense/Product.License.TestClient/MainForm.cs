@@ -315,7 +315,7 @@ namespace Product.License.TestClient
 
         private async void ButtonAes256Base64Data_Click(object sender, EventArgs e)
         {
-            string ivPlainText = richTextBoxAes256IVText.Text;
+            string ivPlainText = richTextBoxAes256IVText.Text.Replace("\n", "");
             string ivEncryptedBase64 = null;
             string ivDecryptedKeyBase64 = null;
             IList<byte> ivEncryptedBase64Bytes = null;
@@ -323,6 +323,13 @@ namespace Product.License.TestClient
             bool iv = false, key = false;
             if (Aes256CBCKeyGenerator.TryGetEncryptedIVBase64(ivPlainText, out ivEncryptedBase64, out ivEncryptedBase64Bytes))
             {
+                if (!Aes256CBCCrypto.IsValidIVBase64Ex(ivEncryptedBase64))
+                {
+                    await SetLabelLicenseKeyAes256ResultTextAsync(false, "!IsValidIVBase64(ivEncryptedBase64)");
+                    return;
+                }
+
+
                 if (Aes256CBCKeyGenerator.TryGetDecryptedBase64(ivEncryptedBase64Bytes, out ivDecryptedKeyBase64))
                 {
                     Trace.WriteLine("ivEncryptedBase64=" + ivEncryptedBase64);
@@ -338,20 +345,28 @@ namespace Product.License.TestClient
                 }
                 else
                 {
+                    await SetLabelLicenseKeyAes256ResultTextAsync(false, "ivEncryptedBase64Bytes => ivDecryptedKeyBase64 실패");
                     return;
                 }
             }
             else
             {
+                await SetLabelLicenseKeyAes256ResultTextAsync(false, "ivPlainText => Base64 실패");
                 return;
             }
 
-            string keyPlainText = richTextBoxAes256KeyText.Text;
+            string keyPlainText = richTextBoxAes256KeyText.Text.Replace("\n", "");
             string keyEncryptedBase64 = null;
             string keyDecryptedKeyBase64 = null;
             IList<byte> keyEncryptedBase64Bytes = null;
             if (Aes256CBCKeyGenerator.TryGetEncryptedKeyBase64(keyPlainText, out keyEncryptedBase64, out keyEncryptedBase64Bytes))
             {
+                if (!Aes256CBCCrypto.IsValidKeyBase64Ex(keyEncryptedBase64))
+                {
+                    await SetLabelLicenseKeyAes256ResultTextAsync(false, "!IsValidIVBase64(keyEncryptedBase64)");
+                    return;
+                }
+
                 if (Aes256CBCKeyGenerator.TryGetDecryptedBase64(keyEncryptedBase64Bytes, out keyDecryptedKeyBase64))
                 {
                     Trace.WriteLine("keyEncryptedBase64=" + keyEncryptedBase64);
@@ -367,11 +382,13 @@ namespace Product.License.TestClient
                 }
                 else
                 {
+                    await SetLabelLicenseKeyAes256ResultTextAsync(false, "keyEncryptedBase64Bytes => keyDecryptedKeyBase64 실패");
                     return;
                 }
             }
             else
             {
+                await SetLabelLicenseKeyAes256ResultTextAsync(false, "keyPlainText => Base64 실패");
                 return;
             }
 
@@ -387,20 +404,22 @@ namespace Product.License.TestClient
             await SetLabelLicenseKeyAes256ResultTextAsync(result);
         }
 
-        private async Task SetLabelLicenseKeyAes256ResultTextAsync(bool result)
+        private async Task SetLabelLicenseKeyAes256ResultTextAsync(bool result, string causeText = null)
         {
             await Task.Delay(1000);
 
             if (result)
             {
-                labelLicenseKeyAes256Result.Text = "결과 : 성공";
+                labelLicenseKeyAes256Result.Text = String.Format("{0}={1}", "결과", "성공");
             }
             else
             {
-                labelLicenseKeyAes256Result.Text = "결과 : 실패";
+                labelLicenseKeyAes256Result.Text = String.Format("{0}={1}, 이유={2}", "결과", "실패", causeText);
             }
 
             await Task.Delay(3000);
+
+            labelLicenseKeyAes256Result.Text = "";
         }
     }
 }

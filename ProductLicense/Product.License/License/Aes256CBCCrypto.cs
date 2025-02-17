@@ -38,13 +38,48 @@ namespace Product.License
         public static readonly string AesIvBase64;
         public static readonly string AesKeyBase64;
 
+        public static bool IsValidIVBase64Ex(string ivBasee64)
+        {
+            int length = ivBasee64.Length;
+            if (length == 24 && (ivBasee64[length - 1] == '=' && ivBasee64[length - 2] == '='))
+            {
+                for (int i = 0; i < length - 2; i++)
+                {
+                    if (ivBasee64[i] == '=')
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
         public static bool IsValidIVBase64(string ivBase64)
         {
             return StringUtility.IsBase64(ivBase64);
         }
 
+        public static bool IsValidKeyBase64Ex(string keyBase64)
+        {
+            int length = keyBase64.Length;
+            if (length == 44 && (keyBase64[length - 1] == '='))
+            {
+                for (int i = 0; i < length - 1; i++)
+                {
+                    if (keyBase64[i] == '=')
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
         public static bool IsValidKeyBase64(string keyBase64)
         {
+            
             return StringUtility.IsBase64(keyBase64);
         }
 

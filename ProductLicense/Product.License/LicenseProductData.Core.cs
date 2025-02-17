@@ -56,13 +56,22 @@ namespace Product
             return builder.ToString();
         }
 
-        public string GenerateLicenseData(bool withMachineGuid = false)
+        public string GenerateLicenseData(bool withKeyValueProp = false)
         {
             StringBuilder builder = new StringBuilder(256);
-            if (withMachineGuid)
+            if (withKeyValueProp)
             {
-                builder.Append(nameof(ExecMachineGuid)).Append(PropertyKeyValueSplitChar).Append(ExecMachineGuid);
-                builder.Append(PropertyCollectionSplitChar);
+                if (!String.IsNullOrEmpty(ExecMachineGuid))
+                {
+                    builder.Append(nameof(ExecMachineGuid)).Append(PropertyKeyValueSplitChar).Append(ExecMachineGuid);
+                    builder.Append(PropertyCollectionSplitChar);
+                }
+                
+                if (!String.IsNullOrEmpty(ExecMacAddress))
+                {
+                    builder.Append(nameof(ExecMacAddress)).Append(PropertyKeyValueSplitChar).Append(ExecMacAddress);
+                    builder.Append(PropertyCollectionSplitChar);
+                }
             }
             builder.Append(nameof(Ids)).Append(PropertyKeyValueSplitChar).Append(SplitCharProductIds);
             builder.Append(PropertyCollectionSplitChar);
@@ -133,11 +142,21 @@ namespace Product
                 {
                     p.RuntimeEnvironment = (RuntimeEnvironment)Enum.Parse(typeof(RuntimeEnvironment), value);
                 }
+                /*
                 else if (nameof(ExecMachineGuid).Equals(name) || "MachineGuid".Equals(name))
                 {
                     p.ExecMachineGuid = value;
                 }
                 else if (nameof(ExecMacAddress).Equals(name) || "MacAddress".Equals(name))
+                {
+                    p.ExecMacAddress = value;
+                }
+                */
+                else if (name.IndexOf("MachineGuid") != -1)
+                {
+                    p.ExecMachineGuid = value;
+                }
+                else if (name.IndexOf("MacAddress") != -1)
                 {
                     p.ExecMacAddress = value;
                 }

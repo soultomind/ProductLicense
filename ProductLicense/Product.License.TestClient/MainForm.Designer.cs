@@ -31,6 +31,7 @@ namespace Product.License.TestClient
         {
             this.components = new System.ComponentModel.Container();
             this.groupBoxLicesneCrypto = new System.Windows.Forms.GroupBox();
+            this.labelLicenseKeyAes256Result = new System.Windows.Forms.Label();
             this.labelAes256IVBase64 = new System.Windows.Forms.Label();
             this.labelAes256KeyBase64 = new System.Windows.Forms.Label();
             this.buttonAes256Base64Data = new System.Windows.Forms.Button();
@@ -88,7 +89,6 @@ namespace Product.License.TestClient
             this.richTextBoxConsole = new System.Windows.Forms.RichTextBox();
             this.contextMenuStripRichTextBoxConsole = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemClear = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelLicenseKeyAes256Result = new System.Windows.Forms.Label();
             this.groupBoxLicesneCrypto.SuspendLayout();
             this.groupBoxCrypto.SuspendLayout();
             this.groupBoxLicenseProductData.SuspendLayout();
@@ -121,6 +121,14 @@ namespace Product.License.TestClient
             this.groupBoxLicesneCrypto.TabStop = false;
             this.groupBoxLicesneCrypto.Text = "라이선스 암복호화";
             // 
+            // labelLicenseKeyAes256Result
+            // 
+            this.labelLicenseKeyAes256Result.AutoSize = true;
+            this.labelLicenseKeyAes256Result.Location = new System.Drawing.Point(706, 159);
+            this.labelLicenseKeyAes256Result.Name = "labelLicenseKeyAes256Result";
+            this.labelLicenseKeyAes256Result.Size = new System.Drawing.Size(0, 15);
+            this.labelLicenseKeyAes256Result.TabIndex = 18;
+            // 
             // labelAes256IVBase64
             // 
             this.labelAes256IVBase64.AutoSize = true;
@@ -141,7 +149,7 @@ namespace Product.License.TestClient
             // 
             // buttonAes256Base64Data
             // 
-            this.buttonAes256Base64Data.Location = new System.Drawing.Point(742, 84);
+            this.buttonAes256Base64Data.Location = new System.Drawing.Point(730, 84);
             this.buttonAes256Base64Data.Name = "buttonAes256Base64Data";
             this.buttonAes256Base64Data.Size = new System.Drawing.Size(30, 30);
             this.buttonAes256Base64Data.TabIndex = 59;
@@ -197,7 +205,7 @@ namespace Product.License.TestClient
             this.richTextBoxAes256KeyText.Name = "richTextBoxAes256KeyText";
             this.richTextBoxAes256KeyText.Size = new System.Drawing.Size(208, 37);
             this.richTextBoxAes256KeyText.TabIndex = 47;
-            this.richTextBoxAes256KeyText.Text = "Copyright C Hancom innostream.";
+            this.richTextBoxAes256KeyText.Text = "Copyright C Hancom !innostream.@\n";
             // 
             // buttonGenerateLicenseProductDataPlainText
             // 
@@ -322,7 +330,7 @@ namespace Product.License.TestClient
             // 
             // buttonDecryptLicenseProductData
             // 
-            this.buttonDecryptLicenseProductData.Location = new System.Drawing.Point(74, 220);
+            this.buttonDecryptLicenseProductData.Location = new System.Drawing.Point(79, 120);
             this.buttonDecryptLicenseProductData.Name = "buttonDecryptLicenseProductData";
             this.buttonDecryptLicenseProductData.Size = new System.Drawing.Size(30, 30);
             this.buttonDecryptLicenseProductData.TabIndex = 45;
@@ -351,9 +359,9 @@ namespace Product.License.TestClient
             this.groupBoxLicenseProductData.Controls.Add(this.textBoxOperationMode);
             this.groupBoxLicenseProductData.Controls.Add(this.labelIssueDate);
             this.groupBoxLicenseProductData.Controls.Add(this.labelProductIds);
-            this.groupBoxLicenseProductData.Location = new System.Drawing.Point(28, 254);
+            this.groupBoxLicenseProductData.Location = new System.Drawing.Point(28, 183);
             this.groupBoxLicenseProductData.Name = "groupBoxLicenseProductData";
-            this.groupBoxLicenseProductData.Size = new System.Drawing.Size(401, 339);
+            this.groupBoxLicenseProductData.Size = new System.Drawing.Size(401, 410);
             this.groupBoxLicenseProductData.TabIndex = 44;
             this.groupBoxLicenseProductData.TabStop = false;
             this.groupBoxLicenseProductData.Text = "LicenseProductData";
@@ -531,7 +539,7 @@ namespace Product.License.TestClient
             // labelEncryptedLicenseData
             // 
             this.labelEncryptedLicenseData.AutoSize = true;
-            this.labelEncryptedLicenseData.Location = new System.Drawing.Point(25, 132);
+            this.labelEncryptedLicenseData.Location = new System.Drawing.Point(25, 27);
             this.labelEncryptedLicenseData.Name = "labelEncryptedLicenseData";
             this.labelEncryptedLicenseData.Size = new System.Drawing.Size(147, 15);
             this.labelEncryptedLicenseData.TabIndex = 26;
@@ -540,7 +548,7 @@ namespace Product.License.TestClient
             // richTextBoxEncryptedtLicenseData
             // 
             this.richTextBoxEncryptedtLicenseData.BackColor = System.Drawing.Color.White;
-            this.richTextBoxEncryptedtLicenseData.Location = new System.Drawing.Point(28, 150);
+            this.richTextBoxEncryptedtLicenseData.Location = new System.Drawing.Point(28, 45);
             this.richTextBoxEncryptedtLicenseData.Name = "richTextBoxEncryptedtLicenseData";
             this.richTextBoxEncryptedtLicenseData.Size = new System.Drawing.Size(400, 65);
             this.richTextBoxEncryptedtLicenseData.TabIndex = 25;
@@ -678,14 +686,6 @@ namespace Product.License.TestClient
             this.ToolStripMenuItemClear.Size = new System.Drawing.Size(101, 22);
             this.ToolStripMenuItemClear.Text = "Clear";
             this.ToolStripMenuItemClear.Click += new System.EventHandler(this.RichTextBoxConsoleToolStripMenuItemClear_Click);
-            // 
-            // labelLicenseKeyAes256Result
-            // 
-            this.labelLicenseKeyAes256Result.AutoSize = true;
-            this.labelLicenseKeyAes256Result.Location = new System.Drawing.Point(769, 159);
-            this.labelLicenseKeyAes256Result.Name = "labelLicenseKeyAes256Result";
-            this.labelLicenseKeyAes256Result.Size = new System.Drawing.Size(0, 15);
-            this.labelLicenseKeyAes256Result.TabIndex = 18;
             // 
             // MainForm
             // 

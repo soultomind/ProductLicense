@@ -154,11 +154,18 @@ namespace Product.License
         #region IV
         public static bool TryGetEncryptedIVBase64(string ivPlainText, out string outBase64)
         {
-            string base64 = ConvertUtility.Base64Encode(ivPlainText);
-            if (Aes256CBCCrypto.IsValidIVBase64(base64))
+            try
             {
-                outBase64 = base64;
-                return true;
+                string base64 = ConvertUtility.Base64Encode(ivPlainText);
+                if (Aes256CBCCrypto.IsValidIVBase64(base64))
+                {
+                    outBase64 = base64;
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                outBase64 = null;
             }
 
             outBase64 = null;
@@ -183,11 +190,18 @@ namespace Product.License
         #region Key
         public static bool TryGetEncryptedKeyBase64(string plainText, out string outBase64)
         {
-            string base64 = ConvertUtility.Base64Encode(plainText);
-            if (Aes256CBCCrypto.IsValidKeyBase64(base64))
+            try
             {
-                outBase64 = base64;
-                return true;
+                string base64 = ConvertUtility.Base64Encode(plainText);
+                if (Aes256CBCCrypto.IsValidKeyBase64(base64))
+                {
+                    outBase64 = base64;
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                outBase64 = null;
             }
 
             outBase64 = null;
