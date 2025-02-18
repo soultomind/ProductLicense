@@ -20,6 +20,9 @@ namespace Product.License.TestClient
     {
         public LicenseFileData LicenseFileData { get; internal set; }
         public ICrypto Crypto { get; internal set; }
+
+        private IList<byte> ivEncryptedBase64Bytes;
+        private IList<byte> keyEncryptedBase64Bytes;
         public MainForm()
         {
             InitializeComponent();
@@ -398,10 +401,51 @@ namespace Product.License.TestClient
                 //ivEncryptedBase64
                 //keyEncryptedBase64
 
+                this.ivEncryptedBase64Bytes = ivEncryptedBase64Bytes;
+                this.keyEncryptedBase64Bytes = keyEncryptedBase64Bytes;
+
                 richTextBoxAes256IVBase64.Text = ivEncryptedBase64;
                 richTextBoxAes256KeyBase64.Text = keyEncryptedBase64;
             }
             await SetLabelLicenseKeyAes256ResultTextAsync(result);
+
+            if (result)
+            {
+                buttonCreateLicenseKeyFile.Visible = true;
+            }
+        }
+
+        private void ButtonCreateLicenseKeyFile_Click(object sender, EventArgs e)
+        {
+            FileDialogResult result = ShowSaveFileDialog(LicenseManager.KeyFileFilter);
+            if (result.DialogResult != DialogResult.OK)
+            {
+                return;
+            }
+
+            string ivEncryptedBase64 = richTextBoxAes256IVBase64.Text;
+            string keyEncryptedBase64 = richTextBoxAes256KeyBase64.Text;
+
+            //this.ivEncryptedBase64Bytes = ivEncryptedBase64Bytes;
+            //this.keyEncryptedBase64Bytes = keyEncryptedBase64Bytes;
+
+            FileStream fsWrite = new FileStream(result.Path, FileMode.OpenOrCreate, FileAccess.Write);
+            for (int i = 0; i < ivEncryptedBase64Bytes.Count; i++)
+            {
+                byte value = ivEncryptedBase64Bytes[i];
+                fsWrite.WriteByte(value);
+            }
+
+            for (int i = 0; i < keyEncryptedBase64Bytes.Count; i++)
+            {
+                byte value = keyEncryptedBase64Bytes[i];
+                fsWrite.WriteByte(value);
+            }
+
+            fsWrite.Flush();
+            fsWrite.Close();
+
+            MessageBox.Show(this, "라이선스 키 파일 생성 완료", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private async Task SetLabelLicenseKeyAes256ResultTextAsync(bool result, string causeText = null)

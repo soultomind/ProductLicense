@@ -89,6 +89,7 @@ namespace Product.License.TestClient
             this.richTextBoxConsole = new System.Windows.Forms.RichTextBox();
             this.contextMenuStripRichTextBoxConsole = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemClear = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonCreateLicenseKeyFile = new System.Windows.Forms.Button();
             this.groupBoxLicesneCrypto.SuspendLayout();
             this.groupBoxCrypto.SuspendLayout();
             this.groupBoxLicenseProductData.SuspendLayout();
@@ -98,6 +99,7 @@ namespace Product.License.TestClient
             // 
             // groupBoxLicesneCrypto
             // 
+            this.groupBoxLicesneCrypto.Controls.Add(this.buttonCreateLicenseKeyFile);
             this.groupBoxLicesneCrypto.Controls.Add(this.labelLicenseKeyAes256Result);
             this.groupBoxLicesneCrypto.Controls.Add(this.labelAes256IVBase64);
             this.groupBoxLicesneCrypto.Controls.Add(this.labelAes256KeyBase64);
@@ -687,6 +689,17 @@ namespace Product.License.TestClient
             this.ToolStripMenuItemClear.Text = "Clear";
             this.ToolStripMenuItemClear.Click += new System.EventHandler(this.RichTextBoxConsoleToolStripMenuItemClear_Click);
             // 
+            // buttonCreateLicenseKeyFile
+            // 
+            this.buttonCreateLicenseKeyFile.Location = new System.Drawing.Point(925, 159);
+            this.buttonCreateLicenseKeyFile.Name = "buttonCreateLicenseKeyFile";
+            this.buttonCreateLicenseKeyFile.Size = new System.Drawing.Size(124, 23);
+            this.buttonCreateLicenseKeyFile.TabIndex = 62;
+            this.buttonCreateLicenseKeyFile.Text = "키 파일 생성";
+            this.buttonCreateLicenseKeyFile.UseVisualStyleBackColor = true;
+            this.buttonCreateLicenseKeyFile.Visible = false;
+            this.buttonCreateLicenseKeyFile.Click += new System.EventHandler(this.ButtonCreateLicenseKeyFile_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -775,6 +788,7 @@ namespace Product.License.TestClient
         private System.Windows.Forms.RichTextBox richTextBoxAes256IVText;
         private System.Windows.Forms.RichTextBox richTextBoxAes256KeyText;
         private System.Windows.Forms.Label labelLicenseKeyAes256Result;
+        private System.Windows.Forms.Button buttonCreateLicenseKeyFile;
     }
 }
 
