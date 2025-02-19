@@ -142,7 +142,7 @@ namespace Product.License.TestClient
         {
             string encryptedText = EnryptionPlainTextLicenseProductData;
 
-            FileDialogResult result = ShowSaveFileDialog(LicenseManager.DataFileFilter);
+            FileDialogResult result = ShowSaveFileDialog(LicenseManager.DataFileFilter, "InitLicenseProduct");
             if (result.DialogResult != DialogResult.OK)
             {
                 return;

@@ -27,9 +27,9 @@ namespace Product.License
         public static readonly string MacAddress;
         public static readonly Exception MacAddressException;
 
-        public static readonly string DefaultLicenseKeyFilePath;
-        public static readonly string DefaultInitLicenseDataFilePath;
-        public static readonly string DefaultExecLicenseDataFilePath;
+        public static readonly string LicenseKeyFilePath;
+        public static readonly string InitLicenseProductDataFilePath;
+        public static readonly string ExecLicenseProductDataFilePath;
 
         public static Func<string, ICrypto> UserCrypto;
 
@@ -85,58 +85,58 @@ namespace Product.License
                 CanVerify = true;
                 Toolkit.TraceWriteLine("CanVeriify True.");
 
-                string value = ConfigurationManager.AppSettings[nameof(DefaultLicenseKeyFilePath)];
+                string value = ConfigurationManager.AppSettings[nameof(LicenseKeyFilePath)];
                 if (!String.IsNullOrEmpty(value))
                 {
                     if (value.IndexOf("%ExecuteDirectory%") != -1)
                     {
                         value = value.Replace("%ExecuteDirectory%", ExecuteContext.Directory);
-                        DefaultLicenseKeyFilePath = value;
+                        LicenseKeyFilePath = value;
                     }
                     else
                     {
-                        DefaultLicenseKeyFilePath = value;
+                        LicenseKeyFilePath = value;
                     }
                 }
                 else
                 {
-                    DefaultLicenseKeyFilePath = ExecuteContext.Directory + Path.DirectorySeparatorChar + "License.key";
+                    LicenseKeyFilePath = ExecuteContext.Directory + Path.DirectorySeparatorChar + "License.key";
                 }
 
-                value = ConfigurationManager.AppSettings[nameof(DefaultInitLicenseDataFilePath)];
+                value = ConfigurationManager.AppSettings[nameof(InitLicenseProductDataFilePath)];
                 if (!String.IsNullOrEmpty(value))
                 {
                     if (value.IndexOf("%ExecuteDirectory%") != -1)
                     {
                         value = value.Replace("%ExecuteDirectory%", ExecuteContext.Directory);
-                        DefaultInitLicenseDataFilePath = value;
+                        InitLicenseProductDataFilePath = value;
                     }
                     else
                     {
-                        DefaultInitLicenseDataFilePath = value;
+                        InitLicenseProductDataFilePath = value;
                     }
                 }
                 else
                 {
-                    DefaultInitLicenseDataFilePath = ExecuteContext.Directory + Path.DirectorySeparatorChar + "InitLicenseData.data";
+                    InitLicenseProductDataFilePath = ExecuteContext.Directory + Path.DirectorySeparatorChar + "InitLicenseProduct.data";
                 }
 
-                value = ConfigurationManager.AppSettings[nameof(DefaultExecLicenseDataFilePath)];
+                value = ConfigurationManager.AppSettings[nameof(ExecLicenseProductDataFilePath)];
                 if (!String.IsNullOrEmpty(value))
                 {
                     if (value.IndexOf("%ExecuteDirectory%") != -1)
                     {
                         value = value.Replace("%ExecuteDirectory%", ExecuteContext.Directory);
-                        DefaultExecLicenseDataFilePath = value;
+                        ExecLicenseProductDataFilePath = value;
                     }
                     else
                     {
-                        DefaultExecLicenseDataFilePath = value;
+                        ExecLicenseProductDataFilePath = value;
                     }
                 }
                 else
                 {
-                    DefaultExecLicenseDataFilePath = ExecuteContext.Directory + Path.DirectorySeparatorChar + "ExecLicenseData.data";
+                    ExecLicenseProductDataFilePath = ExecuteContext.Directory + Path.DirectorySeparatorChar + "ExecLicenseProduct.data";
                 }
             }
             else
@@ -183,16 +183,16 @@ namespace Product.License
         /// <summary>
         /// 라이선스 키 파일 경로
         /// </summary>
-        public string LicenseKeyFilePath { get; internal set; }
+        public string KeyFilePath { get; internal set; }
 
         /// <summary>
         /// 라이선스 데이터 암복호화 인터페이스
         /// </summary>
         public ICrypto Crypto { get; internal set; }
 
-        public LicenseManager(string licenseKeyFilePath)
+        public LicenseManager(string keyFilePath)
         {
-            LicenseKeyFilePath = licenseKeyFilePath;
+            KeyFilePath = keyFilePath;
             if (!File.Exists(LicenseKeyFilePath))
             {
                 ProcessResult = LicenseProcessResult.FileNotFoundLicenseKey;

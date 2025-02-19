@@ -22,9 +22,9 @@ namespace Product.License.TestClient
 
             Application.Run(new MainForm(new LicenseFileData()
             {
-                KeyFilePath = LicenseManager.DefaultLicenseKeyFilePath,
-                InitDataFilePath = LicenseManager.DefaultInitLicenseDataFilePath,
-                ExecDataFilePath = LicenseManager.DefaultExecLicenseDataFilePath
+                KeyFilePath = LicenseManager.LicenseKeyFilePath,
+                InitDataFilePath = LicenseManager.InitLicenseProductDataFilePath,
+                ExecDataFilePath = LicenseManager.ExecLicenseProductDataFilePath
             }));
         }
     }

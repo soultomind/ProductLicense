@@ -20,14 +20,16 @@ namespace Product.License.TestClient
             else
             {
                 Aes256CBCKeyData keyData = new Aes256CBCKeyData();
+                // Hancominnostream IVBase64
                 keyData.IVBase64 = "SGFuY29taW5ub3N0cmVhbQ==";
-                keyData.KeyBase64 = "Q29weXJpZ2h0IOKTkiBIYW5jb20gaW5ub3N0cmVhbS4=";
+                // Copyright C Hancom !innostream.@ KeyBase64
+                keyData.KeyBase64 = "Q29weXJpZ2h0IEMgSGFuY29tICFpbm5vc3RyZWFtLkA=";
 
                 Crypto = new Aes256CBCCrypto(keyData.IVBase64, keyData.KeyBase64);
             }
         }
 
-        internal FileDialogResult ShowSaveFileDialog(string filter)
+        internal FileDialogResult ShowSaveFileDialog(string filter, string fileName = "License")
         {
             string path = String.Empty;
             DialogResult dialogResult = DialogResult.OK;
@@ -35,6 +37,7 @@ namespace Product.License.TestClient
             {
                 dlg.InitialDirectory = Application.StartupPath;
                 dlg.Filter = filter;
+                dlg.FileName = fileName;
 
                 dialogResult = dlg.ShowDialog(this);
                 if (dialogResult == DialogResult.OK)
