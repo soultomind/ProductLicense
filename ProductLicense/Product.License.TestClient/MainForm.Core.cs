@@ -20,9 +20,9 @@ namespace Product.License.TestClient
             else
             {
                 Aes256CBCKeyData keyData = new Aes256CBCKeyData();
-                // Hancominnostream IVBase64
+                // "Hancominnostream" IVBase64
                 keyData.IVBase64 = "SGFuY29taW5ub3N0cmVhbQ==";
-                // Copyright C Hancom !innostream.@ KeyBase64
+                // "Copyright C Hancom !innostream.@" KeyBase64
                 keyData.KeyBase64 = "Q29weXJpZ2h0IEMgSGFuY29tICFpbm5vc3RyZWFtLkA=";
 
                 Crypto = new Aes256CBCCrypto(keyData.IVBase64, keyData.KeyBase64);

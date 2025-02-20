@@ -28,66 +28,64 @@ namespace Product.License
         /// </summary>
         FailedUserCreateCrypto,
 
-        #region InitLicenseData
+        #region InitLicenseProductData
 
         /// <summary>
-        /// InitLicenseData.data 파일을 못찾을 경우
+        /// InitLicenseProduct.data 파일을 못찾을 경우
         /// </summary>
-        FileNotFoundInitLicenseData,
+        FileNotFoundInitLicenseProductData,
 
         /// <summary>
-        /// InitLicenseData.data 생성에 실패 하였을 경우
+        /// InitLicenseProduct.data 생성에 실패 하였을 경우
         /// </summary>
-        FailedCreateInitLicenseData,
+        FailedCreateInitLicenseProductData,
 
         /// <summary>
-        /// InitLicenseData.data 파일 읽는중 오류가 발생하였을 경우
+        /// InitLicenseProduct.data 파일 읽는중 오류가 발생하였을 경우
         /// </summary>
-        FailedReadInitLicenseDataFile,
+        FailedReadInitLicenseProductDataFile,
 
         /// <summary>
-        /// InitLicenseData.data 파일 에서 읽어온 데이터 복호화 작업중 오류가 발생하였을 경우
+        /// InitLicenseProduct.data 파일 에서 읽어온 데이터 복호화 작업중 오류가 발생하였을 경우
         /// </summary>
-        FailedDecryptInitLicenseData,
+        FailedDecryptInitLicenseProductData,
 
         /// <summary>
-        /// InitLicenseData.data 파일 에서 읽어온 데이터 복호화 후 Products 클래스로 파싱중 오류 발생
+        /// InitLicenseProduct.data 파일 에서 읽어온 데이터 복호화 후 LicenseProductData 클래스로 파싱중 오류 발생
         /// </summary>
         FailedParseInitPlainText,
 
-
-
         #endregion
 
-        #region ExecLicenseData
+        #region ExecLicenseProduct
 
         /// <summary>
-        /// ExecLicenseData.data 파일을 못찾을 경우
+        /// ExecLicenseProduct.data 파일을 못찾을 경우
         /// </summary>
-        FileNotFoundExecLicenseData,
+        FileNotFoundExecLicenseProductData,
 
         /// <summary>
-        /// ExecLicenseData.data 생성에 실패 하였을 경우
+        /// ExecLicenseProduct.data 생성에 실패 하였을 경우
         /// </summary>
-        FailedCreateExecLicenseData,
+        FailedCreateExecLicenseProductDataFile,
 
         /// <summary>
-        /// ExecLicenseData.data 파일 읽는중 오류가 발생하였을 경우
+        /// ExecLicenseProduct.data 파일 읽는중 오류가 발생하였을 경우
         /// </summary>
-        FailedReadExecLicenseDataFile,
+        FailedReadExecLicenseProductDataFile,
 
         /// <summary>
-        /// InitLicenseData.data 파일 에서 읽어온 데이터에 MachineGuid값 합쳐서 실행 라이선스 데이터 암호화중 오류가 발생하였을 경우
+        /// InitLicenseProduct.data 파일 에서 읽어온 데이터에 KeyValues값 합쳐서 실행 라이선스 데이터 암호화중 오류가 발생하였을 경우
         /// </summary>
-        FailedEncryptExecLicenseData,
+        FailedEncryptExecLicenseProductData,
 
         /// <summary>
-        /// ExecLicenseData.data 파일 에서 읽어온 데이터 복호화 중 오류 발생
+        /// ExecLicenseProduct.data 파일 에서 읽어온 데이터 복호화 중 오류 발생
         /// </summary>
-        FailedDecryptExecLicenseData,
+        FailedDecryptExecLicenseProductData,
 
         /// <summary>
-        /// ExecLicenseData.data 파일 에서 읽어온 데이터 복호화 후 Products 클래스로 파싱중 오류 발생
+        /// ExecLicenseProduct.data 파일 에서 읽어온 데이터 복호화 후 LicenseProductData 클래스로 파싱중 오류 발생
         /// </summary>
         FailedParseExecPlainText,
 

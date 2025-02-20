@@ -173,12 +173,12 @@ namespace Product.License
         /// <summary>
         /// 초기화 라이선스 데이터 파일 경로
         /// </summary>
-        public string InitLicenseDataFilePath { get; internal set; }
+        public string InitDataFilePath { get; internal set; }
 
         /// <summary>
         /// 실행 라이선스 데이터 파일 경로
         /// </summary>
-        public string ExecLicenseDataFilePath { get; internal set; }
+        public string ExecDataFilePath { get; internal set; }
 
         /// <summary>
         /// 라이선스 키 파일 경로
@@ -204,7 +204,7 @@ namespace Product.License
             string execEncryptedText = String.Empty;
             try
             {
-                using (StreamReader reader = new StreamReader(ExecLicenseDataFilePath))
+                using (StreamReader reader = new StreamReader(ExecDataFilePath))
                 {
                     execEncryptedText = reader.ReadToEnd();
                 }
@@ -212,7 +212,7 @@ namespace Product.License
             catch (Exception ex)
             {
                 Exception = ex;
-                ProcessResult = LicenseProcessResult.FailedReadExecLicenseDataFile;
+                ProcessResult = LicenseProcessResult.FailedReadExecLicenseProductDataFile;
                 return false;
             }
 
@@ -220,7 +220,7 @@ namespace Product.License
         }
 
         /// <summary>
-        /// <see cref="HcinsProduct.GenerateLicenseData(true)"/> 값이 <see cref="ICrypto.Encrypt(string)"/> 암호화 된 문자열 값
+        /// 암호화된 실행 라이선스 데이터(<paramref name="encryptedText"/>) 를 검증합니다.
         /// </summary>
         /// <param name="encryptedText"></param>
         /// <returns></returns>
@@ -234,7 +234,7 @@ namespace Product.License
             catch (Exception ex)
             {
                 Exception = ex;
-                ProcessResult = LicenseProcessResult.FailedDecryptExecLicenseData;
+                ProcessResult = LicenseProcessResult.FailedDecryptExecLicenseProductData;
                 return false;
             }
 
@@ -375,7 +375,7 @@ namespace Product.License
 
             if (!File.Exists(initLicenseDataFilePath))
             {
-                licenseManager.ProcessResult = LicenseProcessResult.FileNotFoundInitLicenseData;
+                licenseManager.ProcessResult = LicenseProcessResult.FileNotFoundInitLicenseProductData;
                 return licenseManager;
             }
 
@@ -390,7 +390,7 @@ namespace Product.License
             catch (Exception ex)
             {
                 licenseManager.Exception = ex;
-                licenseManager.ProcessResult = LicenseProcessResult.FailedReadInitLicenseDataFile;
+                licenseManager.ProcessResult = LicenseProcessResult.FailedReadInitLicenseProductDataFile;
                 return licenseManager;
             }
 
@@ -402,7 +402,7 @@ namespace Product.License
             catch (Exception ex)
             {
                 licenseManager.Exception = ex;
-                licenseManager.ProcessResult = LicenseProcessResult.FailedDecryptInitLicenseData;
+                licenseManager.ProcessResult = LicenseProcessResult.FailedDecryptInitLicenseProductData;
                 return licenseManager;
             }
 
@@ -410,7 +410,6 @@ namespace Product.License
             try
             {
                 product = LicenseProductData.Parse(initPlainText);
-                product.ExecMachineGuid = LicenseManager.MachineGuid;
             }
             catch (Exception ex)
             {
@@ -428,15 +427,24 @@ namespace Product.License
             catch (Exception ex)
             {
                 licenseManager.Exception = ex;
-                licenseManager.ProcessResult = LicenseProcessResult.FailedEncryptExecLicenseData;
+                licenseManager.ProcessResult = LicenseProcessResult.FailedEncryptExecLicenseProductData;
                 return licenseManager;
             }
 
-            using (StreamWriter sw = new StreamWriter(execLicenseDataFilePath))
+            try
             {
-                sw.WriteLine(execEncryptedText);
+                using (StreamWriter sw = new StreamWriter(execLicenseDataFilePath))
+                {
+                    sw.WriteLine(execEncryptedText);
+                }
+                licenseManager.ExecDataFilePath = execLicenseDataFilePath;
             }
-            licenseManager.ExecLicenseDataFilePath = execLicenseDataFilePath;
+            catch (Exception ex)
+            {
+                licenseManager.Exception = ex;
+                licenseManager.ProcessResult = LicenseProcessResult.FailedCreateExecLicenseProductDataFile;
+                return licenseManager;
+            }
 
             licenseManager.ProcessResult = LicenseProcessResult.InitSuccess;
             return licenseManager;
@@ -452,7 +460,7 @@ namespace Product.License
         public static LicenseManager NewExecLicenseManager(string licenseKeyFilePath, string execLicenseDataFilePath)
         {
             LicenseManager licenseManager = NewInitLicenseManager(licenseKeyFilePath);
-            licenseManager.ExecLicenseDataFilePath = execLicenseDataFilePath;
+            licenseManager.ExecDataFilePath = execLicenseDataFilePath;
 
             licenseManager.ProcessResult = LicenseProcessResult.InitSuccess;
             return licenseManager;
