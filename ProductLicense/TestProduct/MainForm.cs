@@ -40,6 +40,23 @@ namespace TestProduct
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
+            if (!Product.License.LicenseManager.CanVerify)
+            {
+                if (Product.License.LicenseManager.MachineGuidException != null)
+                {
+                    RichTextBoxConsole_AppendTextLine("MachineGuid 값 가져오는데 문제가 있습니다. 아래 에러 내용을 참고하세요");
+                    RichTextBoxConsole_AppendTextLine(Product.License.LicenseManager.MachineGuidException.StackTrace);
+                }
+
+                if (Product.License.LicenseManager.MacAddressException != null)
+                {
+                    RichTextBoxConsole_AppendTextLine("MacAddress 값 가져오는데 문제가 있습니다. 아래 에러 내용을 참고하세요");
+                    RichTextBoxConsole_AppendTextLine(Product.License.LicenseManager.MacAddressException.StackTrace);
+                }
+
+                return;
+            }
+
             if (!File.Exists(Product.License.LicenseManager.LicenseKeyFilePath))
             {
                 RichTextBoxConsole_AppendTextLine(
