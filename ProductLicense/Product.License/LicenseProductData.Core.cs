@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Product.License;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -61,15 +62,15 @@ namespace Product
             StringBuilder builder = new StringBuilder(256);
             if (withKeyValueProp)
             {
-                if (!String.IsNullOrEmpty(ExecMachineGuid))
+                if (!String.IsNullOrEmpty(LicenseManager.MachineGuid))
                 {
-                    builder.Append(nameof(ExecMachineGuid)).Append(PropertyKeyValueSplitChar).Append(ExecMachineGuid);
+                    builder.Append(nameof(ExecMachineGuid)).Append(PropertyKeyValueSplitChar).Append(LicenseManager.MachineGuid);
                     builder.Append(PropertyCollectionSplitChar);
                 }
                 
-                if (!String.IsNullOrEmpty(ExecMacAddress))
+                if (!String.IsNullOrEmpty(LicenseManager.MacAddress))
                 {
-                    builder.Append(nameof(ExecMacAddress)).Append(PropertyKeyValueSplitChar).Append(ExecMacAddress);
+                    builder.Append(nameof(ExecMacAddress)).Append(PropertyKeyValueSplitChar).Append(LicenseManager.MacAddress);
                     builder.Append(PropertyCollectionSplitChar);
                 }
             }
@@ -142,16 +143,6 @@ namespace Product
                 {
                     p.RuntimeEnvironment = (RuntimeEnvironment)Enum.Parse(typeof(RuntimeEnvironment), value);
                 }
-                /*
-                else if (nameof(ExecMachineGuid).Equals(name) || "MachineGuid".Equals(name))
-                {
-                    p.ExecMachineGuid = value;
-                }
-                else if (nameof(ExecMacAddress).Equals(name) || "MacAddress".Equals(name))
-                {
-                    p.ExecMacAddress = value;
-                }
-                */
                 else if (name.IndexOf("MachineGuid") != -1)
                 {
                     p.ExecMachineGuid = value;
