@@ -268,6 +268,16 @@ namespace Product.License
                 //ConsoleAppendText("MachineGuid 인증성공");
             }
 
+            if (!p.ExecMacAddress.Equals(MacAddress))
+            {
+                bValidation = false;
+                ProcessResult = LicenseProcessResult.NotEqualMacAddress;
+            }
+            else
+            {
+
+            }
+
             // IssueDateTime, ExpireDateTime 은 날짜까지만 비교
             DateTime now = DateTimeExtension.ToNowSetTimeYearMonthDayExceptTimeZero();
             if (bValidation)
