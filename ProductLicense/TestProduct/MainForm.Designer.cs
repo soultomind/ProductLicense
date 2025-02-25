@@ -121,11 +121,11 @@ namespace TestProduct
             // richTextBoxConsole
             // 
             this.richTextBoxConsole.BackColor = System.Drawing.Color.Black;
-            this.richTextBoxConsole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxConsole.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.richTextBoxConsole.ForeColor = System.Drawing.Color.White;
-            this.richTextBoxConsole.Location = new System.Drawing.Point(3, 3);
+            this.richTextBoxConsole.Location = new System.Drawing.Point(3, 31);
             this.richTextBoxConsole.Name = "richTextBoxConsole";
-            this.richTextBoxConsole.Size = new System.Drawing.Size(779, 159);
+            this.richTextBoxConsole.Size = new System.Drawing.Size(779, 131);
             this.richTextBoxConsole.TabIndex = 0;
             this.richTextBoxConsole.Text = "";
             // 
