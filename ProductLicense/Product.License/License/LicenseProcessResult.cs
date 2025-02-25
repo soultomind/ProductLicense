@@ -99,6 +99,11 @@ namespace Product.License
         NotEqualMachineGuid,
 
         /// <summary>
+        /// MacAddress 값이 일치 하지 않을 경우
+        /// </summary>
+        NotEqualMacAddress,
+
+        /// <summary>
         /// 현재 날짜보다 IssueDateTime 값이 큰 경우
         /// </summary>
         IssueDateTime,
