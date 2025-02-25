@@ -59,29 +59,17 @@ namespace Product.License
             int startReadByteIndex = 0;
             int countReadByteIndex = 0;
 
-            const int IVLength = 48;
-            const int KeyLength = 88;
             using (FileStream fsRead = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
                 ReadIVBase64(fsRead, data, ref startReadByteIndex, ref countReadByteIndex, IVLength);
 
-                byte first = 0, second = 0;
                 StringBuilder builder = new StringBuilder(64);
                 for (int i = 0; i < data.ReadBytes.Count; i++)
                 {
                     if (i % 2 == 1)
                     {
-                        first = data.ReadBytes[i - 1];
-                        second = data.ReadBytes[i];
-
-                        /*
-                        string strHexAsCode = ConvertHexAsCode(first, second);
-                        string strDecAsCode = Convert.ToInt32(strHexAsCode, 16).ToString();
-                        int decAsCode = int.Parse(strDecAsCode);
-                        char keyChar = (char)decAsCode;
-                        Trace.Write(keyChar);
-                        */
-
+                        byte first = data.ReadBytes[i - 1];
+                        byte second = data.ReadBytes[i];
                         char keyChar = ConvertChar(first, second);
                         builder.Append(keyChar);
                     }
@@ -98,17 +86,8 @@ namespace Product.License
                 {
                     if (i % 2 == 1)
                     {
-                        first = data.ReadBytes[i - 1];
-                        second = data.ReadBytes[i];
-
-                        /*
-                        string strHexAsCode = ConvertHexAsCode(first, second);
-                        string strDecAsCode = Convert.ToInt32(strHexAsCode, 16).ToString();
-                        int decAsCode = int.Parse(strDecAsCode);
-                        char keyChar = (char)decAsCode;
-                        Trace.Write(keyChar);
-                        */
-
+                        byte first = data.ReadBytes[i - 1];
+                        byte second = data.ReadBytes[i];
                         char keyChar = ConvertChar(first, second);
                         builder.Append(keyChar);
                     }
@@ -134,7 +113,8 @@ namespace Product.License
                 {
                     if (i % 2 == 1 && i + 2 != keyBase64Bytes.Count)
                     {
-                        byte first = keyBase64Bytes[i - 1], second = keyBase64Bytes[i];
+                        byte first = keyBase64Bytes[i - 1];
+                        byte second = keyBase64Bytes[i];
                         char keyChar = ConvertChar(first, second);
                         builder.Append(keyChar);
                     }
@@ -232,8 +212,8 @@ namespace Product.License
                 string hex = dec.ToString("X2");
                 for (int i = 0; i < hex.Length; i++)
                 {
-                    char hexChar = hex[i];
-                    byte value = (byte)ConvertUtility.ToInt32HexChar(hexChar);
+                    char hexValue = hex[i];
+                    byte value = (byte)ConvertUtility.ToInt32HexChar(hexValue);
                     base64Bytes.Add(value);
                 }
             }
