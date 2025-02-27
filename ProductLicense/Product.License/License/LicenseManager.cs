@@ -382,6 +382,10 @@ namespace Product.License
         public static LicenseManager NewInitLicenseManager(string licenseKeyFilePath, string initLicenseDataFilePath, string execLicenseDataFilePath)
         {
             LicenseManager licenseManager = NewInitLicenseManager(licenseKeyFilePath);
+            if (licenseManager.Exception != null)
+            {
+                return licenseManager;
+            }
 
             if (!File.Exists(initLicenseDataFilePath))
             {
@@ -431,7 +435,7 @@ namespace Product.License
             string execEncryptedText = null;
             try
             {
-                string execPlainText = product.GenerateLicenseData(true);
+                string execPlainText = product.CreateExecPlainText();
                 execEncryptedText = licenseManager.Crypto.Encrypt(execPlainText);
             }
             catch (Exception ex)
@@ -470,6 +474,10 @@ namespace Product.License
         public static LicenseManager NewExecLicenseManager(string licenseKeyFilePath, string execLicenseDataFilePath)
         {
             LicenseManager licenseManager = NewInitLicenseManager(licenseKeyFilePath);
+            if (licenseManager.Exception != null)
+            {
+                return licenseManager;
+            }
             licenseManager.ExecDataFilePath = execLicenseDataFilePath;
 
             licenseManager.ProcessResult = LicenseProcessResult.InitSuccess;
