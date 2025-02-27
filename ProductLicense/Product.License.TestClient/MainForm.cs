@@ -127,7 +127,7 @@ namespace Product.License.TestClient
             licenseProductData.CustomerName = textBoxCustomerName.Text;
             licenseProductData.ProjectName = textBoxProjectName.Text;
 
-            string beforePlainText = licenseProductData.GeneratePlainText();
+            string beforePlainText = licenseProductData.CreatePlainText();
             BeforePlainTextLicenseProductData = beforePlainText;
         }
 

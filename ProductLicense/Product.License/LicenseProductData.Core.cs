@@ -14,7 +14,13 @@ namespace Product
 
         public static readonly string RuntimeEnvironmentSize = "RuntimeEnvironmentSize";
 
-        public string GeneratePlainText()
+        /// <summary>
+        /// 해당 리턴되는 데이터 형태에 따라 
+        /// <para>InitLicenseProduct.data, ExecLicenseProduct.data</para>
+        /// 을 저장할수 있습니다.
+        /// </summary>
+        /// <returns></returns>
+        public string CreatePlainText()
         {
             // PlainText 구성 방향
             // 1. PlainText 를 QueryString 형태로 구성
@@ -34,46 +40,34 @@ namespace Product
                     builder.Append(PropertyCollectionSplitChar);
                 }
             }
-            builder.Append(nameof(Ids)).Append(PropertyKeyValueSplitChar).Append(SplitCharProductIds);
-            builder.Append(PropertyCollectionSplitChar);
 
-            builder.Append(nameof(IssueDate)).Append(PropertyKeyValueSplitChar).Append(IssueDate);
-            builder.Append(PropertyCollectionSplitChar);
-
-            builder.Append(nameof(ExpireDate)).Append(PropertyKeyValueSplitChar).Append(ExpireDate);
-            builder.Append(PropertyCollectionSplitChar);
-
-            builder.Append(nameof(LicenseNo)).Append(PropertyKeyValueSplitChar).Append(LicenseNo);
-            builder.Append(PropertyCollectionSplitChar);
-
-            builder.Append(nameof(CustomerName)).Append(PropertyKeyValueSplitChar).Append(CustomerName);
-            builder.Append(PropertyCollectionSplitChar);
-
-            builder.Append(nameof(ProjectName)).Append(PropertyKeyValueSplitChar).Append(ProjectName);
-            builder.Append(PropertyCollectionSplitChar);
-
-            builder.Append(nameof(OperationMode)).Append(PropertyKeyValueSplitChar).Append(OperationMode.ToString());
+            SetProp(ref builder);
 
             return builder.ToString();
         }
 
-        public string GenerateLicenseData(bool withKeyValueProp = false)
+        public string CreateExecPlainText()
         {
             StringBuilder builder = new StringBuilder(256);
-            if (withKeyValueProp)
+            if (!String.IsNullOrEmpty(LicenseManager.MachineGuid))
             {
-                if (!String.IsNullOrEmpty(LicenseManager.MachineGuid))
-                {
-                    builder.Append(nameof(ExecMachineGuid)).Append(PropertyKeyValueSplitChar).Append(LicenseManager.MachineGuid);
-                    builder.Append(PropertyCollectionSplitChar);
-                }
-                
-                if (!String.IsNullOrEmpty(LicenseManager.MacAddress))
-                {
-                    builder.Append(nameof(ExecMacAddress)).Append(PropertyKeyValueSplitChar).Append(LicenseManager.MacAddress);
-                    builder.Append(PropertyCollectionSplitChar);
-                }
+                builder.Append(nameof(ExecMachineGuid)).Append(PropertyKeyValueSplitChar).Append(LicenseManager.MachineGuid);
+                builder.Append(PropertyCollectionSplitChar);
             }
+
+            if (!String.IsNullOrEmpty(LicenseManager.MacAddress))
+            {
+                builder.Append(nameof(ExecMacAddress)).Append(PropertyKeyValueSplitChar).Append(LicenseManager.MacAddress);
+                builder.Append(PropertyCollectionSplitChar);
+            }
+
+            SetProp(ref builder);
+
+            return builder.ToString();
+        }
+
+        private void SetProp(ref StringBuilder builder)
+        {
             builder.Append(nameof(Ids)).Append(PropertyKeyValueSplitChar).Append(SplitCharProductIds);
             builder.Append(PropertyCollectionSplitChar);
 
@@ -93,8 +87,6 @@ namespace Product
             builder.Append(PropertyCollectionSplitChar);
 
             builder.Append(nameof(OperationMode)).Append(PropertyKeyValueSplitChar).Append(OperationMode.ToString());
-
-            return builder.ToString();
         }
 
         public static LicenseProductData Parse(string plainText)
