@@ -94,6 +94,13 @@ namespace TestProduct
                             Product.License.LicenseManager.ExecLicenseProductDataFilePath);
             }
 
+            if (licenseManager.ProcessResult != LicenseProcessResult.InitSuccess)
+            {
+                RichTextBoxConsole_AppendTextLine("Product.License.LicenseManager 생성에 문제가 있습니다.");
+                RichTextBoxConsole_AppendTextLine("LicenseProcessResult=" + licenseManager.ProcessResult.ToString());
+                return;
+            }
+
             if (!licenseManager.Verify())
             {
                 RichTextBoxConsole_AppendTextLine("실패! 이유=" + licenseManager.ProcessResult.ToString());

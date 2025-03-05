@@ -145,7 +145,7 @@ namespace Product.License
             }
             catch (Exception ex)
             {
-                outBase64 = null;
+                Toolkit.TraceWriteLine(ex);
             }
 
             outBase64 = null;
@@ -181,7 +181,7 @@ namespace Product.License
             }
             catch (Exception ex)
             {
-                outBase64 = null;
+                Toolkit.TraceWriteLine(ex);
             }
 
             outBase64 = null;
